@@ -31,7 +31,7 @@ const Game: React.FC = () => {
 
                     // When the drag starts
                     this.input.on('dragstart', (pointer: Phaser.Input.Pointer, gameObject: Phaser.GameObjects.Text) => {
-                        gameObject.setStyle({ color: '#ff0' }); // Change text color on drag start
+                        gameObject.setStyle({ color: 'yellow' }); // Change text color on drag start
                     });
 
                     // When dragging
@@ -42,7 +42,10 @@ const Game: React.FC = () => {
 
                     // When the drag ends
                     this.input.on('dragend', (pointer: Phaser.Input.Pointer, gameObject: Phaser.GameObjects.Text) => {
-                        gameObject.setStyle({ color: '#000' }); // Change text color back on drag end
+                        gameObject.setStyle({ color: 'red' }); // Change text color back on drag end
+                        gameObject.setInteractive({
+                            useHandCursor: true
+                        });
                     });
                 }
             }
