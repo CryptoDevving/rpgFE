@@ -1,14 +1,11 @@
 import React from 'react';
-import Game from './Game';
-import Fetcher from "./fetch";
+import AppRouter from './routes/AppRouter';
 import InputComponent from "./InputComponent";
 
 const App: React.FC = () => {
     return (
         <div>
-            {/*<Fetcher/>*/}
-            {/*<Game />*/}
-            <InputComponent />
+            <AppRouter />
         </div>
     );
 }
