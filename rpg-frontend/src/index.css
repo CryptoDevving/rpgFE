@@ -6,6 +6,7 @@ html, body, #root {
   padding: 0;
   height: 100%;
   background-image: url("D:\Licence\rpgFE\rpg-frontend\public\figmaExports\Background image.png");
+  overflow: hidden;
 }
 
 body {
