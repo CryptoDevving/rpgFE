@@ -1,6 +1,7 @@
 import React from 'react';
 import ImageButtons from "../components/ClassSelectComponent";
 import Layout from "../Layout";
+import "./ClassSelectPage.css";
 const ClassSelectPage: React.FC = () => {
 
     const handleSelectClass = (className: string) => {
@@ -11,18 +12,17 @@ const ClassSelectPage: React.FC = () => {
     return (
         <Layout showLogo={true}>
 
-        <div>
-
-            <div className="Logo">
-
+            <div>
+                <h1 className="text1">CHOOSE YOUR CLASS:</h1>
             </div>
 
-            <div style={{maxWidth:1000,marginLeft: "auto", marginRight: "auto"}}>
-                <ImageButtons onSelectClass={handleSelectClass} />
-            </div>
-        </div>
+          <div>
+               <div style={{maxWidth:1000,marginLeft: "auto", marginRight: "auto"}}>
+                  <ImageButtons onSelectClass={handleSelectClass} />
+              </div>
+          </div>
+
         </Layout>
-
     );
 };
 

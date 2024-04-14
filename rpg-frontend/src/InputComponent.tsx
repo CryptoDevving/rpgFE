@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './InputComponent.css';
 import ImageButtons from "./components/ClassSelectComponent";
+import Layout from "./Layout";
 
 const InputComponent = () => {
     const [isFocused, setIsFocused] = useState(false);
@@ -23,6 +24,7 @@ const InputComponent = () => {
 
 
     return (
+        <Layout showLogo={false}>
         <div className="input-container">
             <label htmlFor="inputField">Nickname</label>
             <div
@@ -37,6 +39,7 @@ const InputComponent = () => {
                 />
             </div>
         </div>
+        </Layout>
     );
 };
 
