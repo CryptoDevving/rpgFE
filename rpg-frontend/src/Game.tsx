@@ -1,4 +1,3 @@
-// src/Game.tsx
 import Phaser from 'phaser';
 import React, { useEffect, useRef } from 'react';
 
@@ -53,7 +52,6 @@ const Game: React.FC = () => {
 
         new Phaser.Game(config);
 
-        // Cleanup game instance on component unmount
         return () => {
             phaserGameRef.current?.childNodes.forEach((child) => {
                 if (child instanceof HTMLCanvasElement) {

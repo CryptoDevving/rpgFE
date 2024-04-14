@@ -3,6 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import InputComponent from "../InputComponent";
 import Game from "../Game";
+import ClassSelectPage from "../pages/ClassSelectPage";
 
 const AppRouter: React.FC = () => {
     // const { isAuthenticated } = useAuth();
@@ -12,6 +13,7 @@ const AppRouter: React.FC = () => {
             <Routes>
                 <Route path="/ceva" element={<Game />} />
                 <Route path="/test" element={<InputComponent />} />
+                <Route path="/class" element={<ClassSelectPage />} />
 
                 {/*<Route path="/" element={<Login />} />*/}
                 {/*<Route path="/class-select" element={<ClassSelect />} />*/}

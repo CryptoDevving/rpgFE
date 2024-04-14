@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './InputComponent.css';
+import ImageButtons from "./components/ClassSelectComponent";
 
 const InputComponent = () => {
     const [isFocused, setIsFocused] = useState(false);
@@ -19,6 +20,7 @@ const InputComponent = () => {
     const backgroundImageUrl = isFocused
         ? '/figmaExports/SelectedInput.png'
         : '/figmaExports/FieldClassic.png';  //Default
+
 
     return (
         <div className="input-container">

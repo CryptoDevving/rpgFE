@@ -1,0 +1,33 @@
+.image-container {
+    display: flex;
+    justify-content: space-around;
+    margin: 10px;
+}
+
+.class-image {
+    filter: grayscale(100%); /* Make the image black and white */
+    transition: filter 0.4s ease, transform 0.4s ease;
+    cursor: pointer;
+    transform: scale(0.9);
+}
+
+.class-image:hover {
+    filter: grayscale(0%);
+    transform: scale(1.1);
+}
+
+.warrior:hover {
+    filter: drop-shadow(0 0 2rem darkred);
+}
+
+.archer:hover {
+    filter: drop-shadow(0 0 2rem green);
+}
+
+.mage:hover {
+    filter: drop-shadow(0 0 2rem #305bc8);
+}
+
+.healer:hover {
+    filter: drop-shadow(0 0 2rem goldenrod);
+}
