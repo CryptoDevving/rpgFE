@@ -15,10 +15,10 @@ const ImageButtons: React.FC<ImageButtonsProps> = ({ onSelectClass }) => {
     const [selectedClass, setSelectedClass] = useState<string>('');
 
     const classes: ClassItem[] = [
-        { name: 'Warrior', img: '/figmaExports/ClassIcons/warrior.png', info: '+5 DMG | -2 SPD | +1 CRT | 0 MNA' },
-        { name: 'Mage', img: '/figmaExports/ClassIcons/mage.png', info: '+3 DMG | +1 SPD | +2 CRT | +5 MNA' },
-        { name: 'Archer', img: '/figmaExports/ClassIcons/archer.png', info: '+4 DMG | +3 SPD | +1 CRT | +1 MNA' },
-        { name: 'Healer', img: '/figmaExports/ClassIcons/healer.png', info: '+2 DMG | +1 SPD | +3 CRT | +4 MNA' }
+        { name: 'Warrior', img: '/figmaExports/classIcons/warrior.png', info: '+5 DMG | -2 SPD | +1 CRT | 0 MNA' },
+        { name: 'Mage', img: '/figmaExports/classIcons/mage.png', info: '+3 DMG | +1 SPD | +2 CRT | +5 MNA' },
+        { name: 'Archer', img: '/figmaExports/classIcons/archer.png', info: '+4 DMG | +3 SPD | +1 CRT | +1 MNA' },
+        { name: 'Healer', img: '/figmaExports/classIcons/healer.png', info: '+2 DMG | +1 SPD | +3 CRT | +4 MNA' }
     ];
 
     const handleClick = (className: string) => {

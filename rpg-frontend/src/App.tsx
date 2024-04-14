@@ -2,6 +2,7 @@ import React from 'react';
 import AppRouter from './routes/AppRouter';
 import InputComponent from "./InputComponent";
 import { useEffect, useState } from 'react';
+import CursorBG from "./CursorBG";
 
 
 interface Size {
@@ -32,6 +33,7 @@ const App: React.FC = () => {
 
     return (
         <div>
+            <CursorBG />
             {windowSize.width < 1084 || windowSize.height < 768 ? (
                 <div style={{ textAlign: 'center', padding: 50 }}>
                     <p style={{ color: 'red', fontSize: 20 }}>
@@ -43,6 +45,8 @@ const App: React.FC = () => {
                         src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Warning.svg/1200px-Warning.svg.png"
                         alt="Warning Icon"
                     />
+
+
                 </div>
             ) : (
                 <AppRouter />

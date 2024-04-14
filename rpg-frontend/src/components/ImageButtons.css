@@ -42,26 +42,40 @@
 .class-container.selected {
     background-color: rgba(110, 110, 110, 0.05);
     border-radius: 10px;
-    backdrop-filter: blur(4px);
-    /*transition-duration: 1s;*/
+    backdrop-filter: blur(3px);
 }
-
-.class-image.highlight {}
 
 .warrior:hover {
-    filter: drop-shadow(0 0 2rem darkred);
+    filter: drop-shadow(0 0 2rem #7a0000);
+    transition: 0.5s ease-in-out;
 }
-
+.warrior.highlight {
+    filter: drop-shadow(0 0 1.1rem #c90000);
+    transform: scale(1);
+}
 .archer:hover {
-    filter: drop-shadow(0 0 2rem green);
+    filter: drop-shadow(0 0 2rem rgba(34, 225, 34, 0.56));
+    transition: 0.5s ease-in-out;
 }
-
+.archer.highlight {
+    filter: drop-shadow(0 0 1rem rgba(10, 255, 10, 0.56));
+    transform: scale(1);
+}
 .mage:hover {
-    filter: drop-shadow(0 0 2rem #305bc8);
+    filter: drop-shadow(0 0 2.5rem #1b46b2);
+    transition: 0.5s ease-in-out;
 }
-
+.mage.highlight {
+    filter: drop-shadow(0 0 1rem #1b46b2);
+    transform: scale(1);
+}
 .healer:hover {
-    filter: drop-shadow(0 0 2rem goldenrod);
+    filter: drop-shadow(0 0 1.7rem goldenrod);
+    transition: 0.5s ease-in-out;
+}
+.healer.highlight {
+    filter: drop-shadow(0 0 1rem goldenrod);
+    transform: scale(1);
 }
 
 

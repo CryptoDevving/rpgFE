@@ -5,9 +5,11 @@ html, body, #root {
   margin: 0;
   padding: 0;
   height: 100%;
-  background-image: url("D:\Licence\rpgFE\rpg-frontend\public\figmaExports\Background image.png");
+  background-image: url("D:\Licence\rpgFE\rpg-frontend\public\figmaExports\BGimage.png");
+  background-size: cover;
   overflow: hidden;
 }
+
 
 body {
   font-family: 'Hanuman', serif;
