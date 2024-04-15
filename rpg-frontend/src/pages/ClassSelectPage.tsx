@@ -13,7 +13,7 @@ const ClassSelectPage: React.FC = () => {
         <Layout showLogo={true}>
 
             <div>
-                <h1 className="text1">CHOOSE YOUR CLASS:</h1>
+                <p className="text1">CHOOSE YOUR CLASS:</p>
             </div>
 
           <div>

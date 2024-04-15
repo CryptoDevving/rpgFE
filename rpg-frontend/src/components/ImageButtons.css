@@ -7,7 +7,19 @@
 
 .class-information {
     font-size: 16px;
-    -webkit-text-stroke:0.31px black;
+    text-shadow:
+            -1px -1px 0 #000,
+            1px -1px 0 #000,
+            -1px 1px 0 #000,
+            1px 1px 0 #000,
+            -2px 0 0 #000,
+            2px 0 0 #000,
+            0 -2px 0 #000,
+            0 2px 0 #000,
+            -2px -2px 0 #000,
+            -2px 2px 0 #000,
+            2px -2px 0 #000,
+            2px 2px 0 #000;
     color: white;
     max-width: fit-content;
     margin-left: auto;
@@ -31,8 +43,19 @@
     margin-left: 60px;
     margin-top: 0;
     color: white;
-    -webkit-text-stroke: 1px black;
-}
+    text-shadow:
+            -1px -1px 0 #000,
+            1px -1px 0 #000,
+            -1px 1px 0 #000,
+            1px 1px 0 #000,
+            -2px 0 0 #000,
+            2px 0 0 #000,
+            0 -2px 0 #000,
+            0 2px 0 #000,
+            -2px -2px 0 #000,
+            -2px 2px 0 #000,
+            2px -2px 0 #000,
+            2px 2px 0 #000;}
 
 .class-image:hover {
     filter: grayscale(0%);
