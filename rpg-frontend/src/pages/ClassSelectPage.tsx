@@ -38,4 +38,6 @@ const ClassSelectPage: React.FC = () => {
     );
 };
 
+//solana please
+
 export default ClassSelectPage;
