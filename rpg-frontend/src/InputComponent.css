@@ -1,12 +1,16 @@
 .input-container {
     transition: background-image 0.4s;
+    /*background-color: red;*/
+    margin-bottom: 18px;
+    position: relative;
 }
 
 .input-container label {
-    font-weight: 600;
+    position: absolute;
+    top: -15px;
+    left: 25px;
     color: #CCCAC4;
-    margin-left: 25px;
-    margin-top: 25px;
+    font-weight: 600;
 }
 
 .input-background {

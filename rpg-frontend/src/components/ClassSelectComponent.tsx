@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import './ImageButtons.css';
+import './ClassSelectComponent.css';
 
 interface ImageButtonsProps {
     onSelectClass: (className: string) => void;

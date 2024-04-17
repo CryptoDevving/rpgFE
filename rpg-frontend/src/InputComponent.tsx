@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
 import './InputComponent.css';
-import ImageButtons from "./components/ClassSelectComponent";
 import Layout from "./Layout";
 
-const InputComponent = () => {
+interface InputComponentProps {
+    // onClick: () => void;
+    text?: string;
+    // width?: string;
+    // height?: string;
+}
+
+const InputComponent: React.FC<InputComponentProps> = ({  text = "Default Text"}) => {
     const [isFocused, setIsFocused] = useState(false);
 
     const handleFocus = () => {
@@ -26,7 +32,8 @@ const InputComponent = () => {
     return (
         <Layout showLogo={false}>
         <div className="input-container">
-            <label htmlFor="inputField">Nickname</label>
+
+            <label htmlFor="inputField">{text}</label>
             <div
                 className="input-background"
                 style={{ backgroundImage: `url(${backgroundImageUrl})`, transition: '0.8s' }}
