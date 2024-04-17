@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Hanuman:wght@100;300;400;700;900&display=swap');
 
+* {
+  cursor: url('D:\Licence\rpgFE\rpg-frontend\public\figmaExports\Normal Select.cur'), auto;
+}
 
 html, body, #root {
   margin: 0;
@@ -9,7 +12,6 @@ html, body, #root {
   background-size: cover;
   overflow: hidden;
 }
-
 
 body {
   font-family: 'Hanuman', serif;

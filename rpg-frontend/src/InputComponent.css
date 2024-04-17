@@ -1,6 +1,5 @@
 .input-container {
     transition: background-image 0.4s;
-    /*background-color: red;*/
     margin-bottom: 18px;
     position: relative;
 }
@@ -11,6 +10,30 @@
     left: 25px;
     color: #CCCAC4;
     font-weight: 600;
+    text-shadow:
+            -1px -1px 0 #000,
+            1px -1px 0 #000,
+            -1px 1px 0 #000,
+            1px 1px 0 #000,
+            -2px 0 0 #000,
+            2px 0 0 #000,
+            0 -2px 0 #000,
+            0 2px 0 #000,
+            -2px -2px 0 #000,
+            -2px 2px 0 #000,
+            2px -2px 0 #000,
+            2px 2px 0 #000;
+}
+
+.text-above {
+    position: absolute;
+    top: 10px; /* Adjusts the distance from the top of the parent container */
+    left: 50%; /* Centers horizontally */
+    transform: translateX(-50%); /* Ensures exact centering by moving left by half its own width */
+    width: 100%; /* Full width to maintain container context */
+    text-align: center; /* Centers text within the element */
+    color: black; /* Text color */
+    font-size: 22px; /* Text size */
 }
 
 .input-background {
