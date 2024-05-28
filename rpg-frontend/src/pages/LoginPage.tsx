@@ -1,5 +1,6 @@
 import React from "react";
 import FrameLoginComponent from "../components/FrameLoginComponent";
+import SolanaWallet from "../components/SolanaWallet";
 
 
 const LoginPage = () => {
@@ -7,6 +8,7 @@ const LoginPage = () => {
     return(
         <div>
             <FrameLoginComponent></FrameLoginComponent>
+            <SolanaWallet/>
         </div>
     );
 };
