@@ -1,5 +1,7 @@
 import React from "react";
 import InputComponent from "../InputComponent";
+import WhiteButton from "./WhiteButton";
+import SolanaWallet from "./SolanaWallet";
 
 const FrameLoginComponent = () => {
 
@@ -19,9 +21,8 @@ return(
                     width: '90%'
                 }}>
                     <InputComponent text="Nickname"/>
-                    <InputComponent text="Email"/>
-                    <InputComponent text="Password"/>
-
+                    {/*<h1>Solana Wallet Connection</h1>*/}
+                    <SolanaWallet/>
                 </div>
             </div>
     );
