@@ -1,7 +1,13 @@
-.text-inside-button {
+.red-button {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.redbutton-text {
+    margin-top: 4px;
     font-size: 16px;
     color: white;
-    margin-top: 20px;
     text-shadow:
             -1px -1px 0 #000,
             1px -1px 0 #000,
@@ -16,23 +22,3 @@
             2px -2px 0 #000,
             2px 2px 0 #000;
 }
-
-.solflare-wallet {
-    background-repeat: no-repeat;
-}
-
-.phantom-wallet {
-    background-repeat: no-repeat;
-}
-
-.connected-text{
-    color: #CDBDA0;
-    margin-left: 30px;
-    font-size: medium;
-    width: 300px;
-    height:85px;
-    border: none;
-    background: transparent;
-    display: block;
-}
-

@@ -3,6 +3,7 @@ import { Connection, PublicKey } from '@solana/web3.js';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { PhantomWalletAdapter } from '@solana/wallet-adapter-phantom';
 import { SolflareWalletAdapter } from '@solana/wallet-adapter-solflare';
+import RedButton from "./RedButton";
 import './SolanaWallet.css';
 
 const SolanaWallet: React.FC = () => {
@@ -84,8 +85,8 @@ const SolanaWallet: React.FC = () => {
     };
 
     const backgroundImageUrlPhantom = isPhantomClicked
-        ? '/figmaExports/buttons/LoginSolflareButton.png'
-        : '/figmaExports/buttons/WhiteDefault.png';
+        ? '/figmaExports/buttons/LoginPhantomPressed.png'
+        : '/figmaExports/buttons/LoginPhantomButton.png';
 
     const backgroundImageUrlSolflare = isSolflareClicked
         ? '/figmaExports/buttons/LoginSolflarePressed.png'
@@ -95,9 +96,19 @@ const SolanaWallet: React.FC = () => {
         <div>
             {publicKey ? (
                 <div>
-                    <p>Connected with {walletProvider.toUpperCase()} as: {publicKey.toBase58()}</p>
-                    <button onClick={disconnectWallet}>Disconnect Wallet</button>
-                    <p>Balance: {balance} SOL</p>
+                    <div className="connected-text">
+                        Connected with {walletProvider.toUpperCase()} as: {publicKey.toBase58().slice(0, 5)}...{publicKey.toBase58().slice(-3)}
+                    </div>
+                    <div style={{
+                        marginLeft:25,
+                    }}>
+                    <RedButton
+                        text="Disconnect Wallet" onClick={disconnectWallet}
+                        normalBg="/figmaExports/buttons/RedButtonNormal.png"
+                        hoverBg="/figmaExports/buttons/RedButtonHover.png"
+                        clickBg="/figmaExports/buttons/RedButtonPressed.png"
+                    />
+                    </div>
                 </div>
             ) : (
                 <div>
@@ -109,15 +120,17 @@ const SolanaWallet: React.FC = () => {
                              backgroundImage: `url(${backgroundImageUrlPhantom})`,
                              transition: 'background-image 0.4s',
                              cursor: 'pointer',
-                             width: '200px',
+                             width: '320px',
                              height: '50px',
                              backgroundSize: 'cover',
                              backgroundPosition: 'center',
                              display: 'flex',
                              justifyContent: 'center',
-                             alignItems: 'center'
+                             alignItems: 'center',
+                             marginLeft: 27,
+                             marginBottom: 20,
                          }}>
-                        <p className="text-inside-button">Connect Phantom</p>
+                        <p className="text-inside-button">Connect Phantom Wallet</p>
                     </div>
                     <div className="solflare-button"
                          onMouseDown={handleMouseDownSolflare}
@@ -133,7 +146,9 @@ const SolanaWallet: React.FC = () => {
                              backgroundPosition: 'center',
                              display: 'flex',
                              justifyContent: 'center',
-                             alignItems: 'center'
+                             alignItems: 'center',
+                             marginLeft: 27,
+
                          }}>
                         <p className="text-inside-button">Connect Solflare Wallet</p>
                     </div>
