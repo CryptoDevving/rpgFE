@@ -13,7 +13,7 @@ const AppRouter: React.FC = () => {
         <Router>
             <Routes>
                 <Route path="/ceva" element={<Game />} />
-                <Route path="/test" element={<InputComponent />} />
+                {/*<Route path="/test" element={<InputComponent />} />*/}
                 <Route path="/class" element={<ClassSelectPage />} />
                 <Route path="/login" element={<LoginPage />} />
 

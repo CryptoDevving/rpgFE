@@ -5,6 +5,7 @@ import { PhantomWalletAdapter } from '@solana/wallet-adapter-phantom';
 import { SolflareWalletAdapter } from '@solana/wallet-adapter-solflare';
 import RedButton from "./RedButton";
 import './SolanaWallet.css';
+import axios from "axios";
 
 const SolanaWallet: React.FC = () => {
     const [walletProvider, setWalletProvider] = useState<string>("");
@@ -14,6 +15,8 @@ const SolanaWallet: React.FC = () => {
 
     const [isPhantomClicked, setIsPhantomClicked] = useState(false);
     const [isSolflareClicked, setIsSolflareClicked] = useState(false);
+
+    const [nickname, setNickname] = useState(''); // State for managing nickname input
 
     useEffect(() => {
         const savedWalletProvider = localStorage.getItem('walletProvider');
@@ -92,8 +95,73 @@ const SolanaWallet: React.FC = () => {
         ? '/figmaExports/buttons/LoginSolflarePressed.png'
         : '/figmaExports/buttons/LoginSolflareButton.png';
 
+    // INPUT COMPONENT ------------------------------------------------
+
+    const [isFocused, setIsFocused] = useState(false);
+
+    const handleNicknameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setNickname(event.target.value); // Update nickname state on input change
+    };
+    const handleFocus = () => {
+        if (!isFocused) {
+            setIsFocused(true);
+        }
+    };
+
+    const handleBlur = () => {
+        if (isFocused) {
+            setIsFocused(false);
+        }
+    };
+
+    const backgroundImageUrl = isFocused
+        ? '/figmaExports/SelectedInput.png'
+        : '/figmaExports/FieldClassic.png';  //Default
+
+    // ---------- PROFILE CREATION -----------
+
+    const createProfile = async () => {
+        if (publicKey && nickname) {
+            try {
+                const response = await axios.post('http://localhost:8080/profiles', {
+                    profileNickname: nickname,
+                    solanaAddress: publicKey.toString(),
+                    class: 'DefaultClass', // Assume a default class, modify according to your game logic
+                    money: 0
+                });
+                console.log(response.data);
+                alert('Profile created successfully!');
+            } catch (error) {
+                console.error('Failed to create profile:', error);
+                alert('Error creating profile.');
+            }
+        } else {
+            console.log(`Public Key: ${publicKey}, Nickname: ${nickname}`); // Log for debugging
+            alert('Please connect a wallet and enter a nickname.');
+        }
+    };
+
     return (
         <div>
+
+            <div className="input-container">
+
+                <label htmlFor="inputField">Nickname</label>
+                <div
+                    className="input-background"
+                    style={{ backgroundImage: `url(${backgroundImageUrl})`, transition: '0.8s' }}
+                >
+                    <input
+                        id="inputField"
+                        type="text" value={nickname}
+                        onChange={handleNicknameChange}
+                        onFocus={() => setNickname(nickname)}
+                        onBlur={() => setNickname(nickname)}
+                    />
+
+                </div>
+            </div>
+
             {publicKey ? (
                 <div>
                     <div className="connected-text">
@@ -117,43 +185,29 @@ const SolanaWallet: React.FC = () => {
                          onMouseUp={handleMouseUpPhantom}
                          onMouseLeave={() => setIsPhantomClicked(false)}
                          style={{
-                             backgroundImage: `url(${backgroundImageUrlPhantom})`,
-                             transition: 'background-image 0.4s',
-                             cursor: 'pointer',
-                             width: '320px',
-                             height: '50px',
-                             backgroundSize: 'cover',
-                             backgroundPosition: 'center',
-                             display: 'flex',
-                             justifyContent: 'center',
-                             alignItems: 'center',
-                             marginLeft: 27,
-                             marginBottom: 20,
+                             backgroundImage: `url(${backgroundImageUrlPhantom})`
                          }}>
                         <p className="text-inside-button">Connect Phantom Wallet</p>
                     </div>
+
                     <div className="solflare-button"
                          onMouseDown={handleMouseDownSolflare}
                          onMouseUp={handleMouseUpSolflare}
                          onMouseLeave={() => setIsSolflareClicked(false)}
                          style={{
-                             backgroundImage: `url(${backgroundImageUrlSolflare})`,
-                             transition: 'background-image 0.4s',
-                             cursor: 'pointer',
-                             width: '320px',
-                             height: '50px',
-                             backgroundSize: 'cover',
-                             backgroundPosition: 'center',
-                             display: 'flex',
-                             justifyContent: 'center',
-                             alignItems: 'center',
-                             marginLeft: 27,
-
+                             backgroundImage: `url(${backgroundImageUrlSolflare})`
                          }}>
                         <p className="text-inside-button">Connect Solflare Wallet</p>
                     </div>
                 </div>
             )}
+
+            <RedButton text="Login/ SignUp" onClick={createProfile}
+                       normalBg="/figmaExports/buttons/RedButtonNormal.png"
+                       hoverBg="/figmaExports/buttons/RedButtonHover.png"
+                       clickBg="/figmaExports/buttons/RedButtonPressed.png"
+            />
+
         </div>
     );
 };

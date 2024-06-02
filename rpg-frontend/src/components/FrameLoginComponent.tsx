@@ -5,12 +5,7 @@ import SolanaWallet from "./SolanaWallet";
 import RedButton from "./RedButton";
 
 const FrameLoginComponent = () => {
-
     const frameImage = '/figmaExports/FrameLogin.png';
-
-    const handleClick = () => {
-        console.log('Button clicked!');
-    };
 
 return(
             <div className="frame-box" style={{ position: 'relative', width: '450px', height: 'auto', marginLeft: "20%", marginTop: "60px"}}>
@@ -25,8 +20,7 @@ return(
                     transform: 'translateX(-50%)',
                     width: '90%'
                 }}>
-                    <InputComponent text="Nickname"/>
-                    {/*<h1>Solana Wallet Connection</h1>*/}
+                    {/*<InputComponent text="Nickname"/>*/}
                     <SolanaWallet/>
 
                 </div>

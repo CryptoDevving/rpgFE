@@ -5,7 +5,7 @@ const LoginPage = () => {
 
     return(
         <div>
-            <FrameLoginComponent></FrameLoginComponent>
+            <FrameLoginComponent />
         </div>
     );
 };
