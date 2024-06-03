@@ -47,6 +47,7 @@
     justify-content: center;
     align-items: center;
     margin-left: 27px;
+    /*margin-top: 20px;*/
 }
 
 .phantom-button {
@@ -60,13 +61,17 @@
     align-items: center;
     margin-left: 27px;
     margin-bottom: 20px;
+    margin-top: 27px;
 }
 
 .phantom-button:hover {
     cursor: pointer;
 }
 
-
+.create-account-button {
+    margin-left: 25px;
+    margin-top: 250px;
+}
 
 /*-------------- INPUT COMPONENT --------------------*/
 

@@ -126,8 +126,10 @@ const SolanaWallet: React.FC = () => {
                 const response = await axios.post('http://localhost:8080/profiles', {
                     profileNickname: nickname,
                     solanaAddress: publicKey.toString(),
-                    class: 'DefaultClass', // Assume a default class, modify according to your game logic
-                    money: 0
+                    profileClass: 1,
+                    money: 100,
+                    level: 0,
+                    healthPoints: 100,
                 });
                 console.log(response.data);
                 alert('Profile created successfully!');
@@ -155,8 +157,8 @@ const SolanaWallet: React.FC = () => {
                         id="inputField"
                         type="text" value={nickname}
                         onChange={handleNicknameChange}
-                        onFocus={() => setNickname(nickname)}
-                        onBlur={() => setNickname(nickname)}
+                        onFocus={() => {setNickname(nickname); handleFocus()}}
+                        onBlur={() => {setNickname(nickname); handleBlur()}}
                     />
 
                 </div>
@@ -202,11 +204,13 @@ const SolanaWallet: React.FC = () => {
                 </div>
             )}
 
-            <RedButton text="Login/ SignUp" onClick={createProfile}
+            <div className="create-account-button">
+            <RedButton text="Create Account" onClick={createProfile}
                        normalBg="/figmaExports/buttons/RedButtonNormal.png"
                        hoverBg="/figmaExports/buttons/RedButtonHover.png"
                        clickBg="/figmaExports/buttons/RedButtonPressed.png"
             />
+            </div>
 
         </div>
     );
