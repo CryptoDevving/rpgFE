@@ -122,6 +122,9 @@ const SolanaWallet: React.FC = () => {
 
     const createProfile = async () => {
         if (publicKey && nickname) {
+            const initialInventory = [
+                { itemId: 2, quantity: 1, equipped: true },
+            ];
             try {
                 const response = await axios.post('http://localhost:8080/profiles', {
                     profileNickname: nickname,
@@ -130,6 +133,7 @@ const SolanaWallet: React.FC = () => {
                     money: 100,
                     level: 0,
                     healthPoints: 100,
+                    inventory: initialInventory
                 });
                 console.log(response.data);
                 alert('Profile created successfully!');
