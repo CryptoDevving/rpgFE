@@ -1,12 +1,11 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
-
-// Define the type for the user data you want to store
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
 interface IInventoryItem {
     itemId: number;
     quantity: number;
     equipped: boolean;
     unlocked: boolean;
+    imageUrl: string; // Assuming images are referenced by URL
 }
 
 interface User {
@@ -19,27 +18,40 @@ interface User {
     inventory: IInventoryItem[];
 }
 
-// Define the context type
 interface UserContextType {
     user: User | null;
     setUser: (user: User | null) => void;
 }
 
-// Create the context
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
-// Create a provider
 interface UserProviderProps {
     children: ReactNode;
 }
 
 export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
+    const [user, setUser] = useState<User | null>(null);
 
-    const [user, setUser] = useState<User | null>(() => {
-        // Example: Attempt to load user data from local storage
-        const savedUser = localStorage.getItem('user');
-        return savedUser ? JSON.parse(savedUser) : null;
-    });
+    // Load user data from local storage on component mount
+    useEffect(() => {
+        const loadUserData = () => {
+            const savedUser = localStorage.getItem('user');
+            if (savedUser) {
+                setUser(JSON.parse(savedUser));
+            }
+        };
+
+        loadUserData();
+    }, []);
+
+    // Update local storage whenever the user state changes
+    useEffect(() => {
+        if (user) {
+            localStorage.setItem('user', JSON.stringify(user));
+        } else {
+            localStorage.removeItem('user');  // Clear user from local storage if logged out
+        }
+    }, [user]);
 
     return (
         <UserContext.Provider value={{ user, setUser }}>
@@ -48,10 +60,9 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     );
 };
 
-// Hook to use the context
 export const useUser = () => {
     const context = useContext(UserContext);
-    if (context === undefined) {
+    if (!context) {
         throw new Error('useUser must be used within a UserProvider');
     }
     return context;

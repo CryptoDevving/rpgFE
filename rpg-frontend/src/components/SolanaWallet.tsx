@@ -118,10 +118,11 @@ const SolanaWallet: React.FC = () => {
                 itemId: 0,  // No Item
                 quantity: 0,
                 equipped: false,
-                unlocked: index < 16
+                unlocked: index < 16,
+                imageUrl: ''
             }));
 
-            initialInventory[0] = { itemId: 2, quantity: 1, equipped: true, unlocked: true }; // Example starting item
+            initialInventory[0] = { itemId: 2, quantity: 1, equipped: true, unlocked: true, imageUrl: 'http://localhost:8080/images/itemJar.png' };
 
             try {
                 const response = await axios.post('http://localhost:8080/profiles', {
@@ -146,7 +147,7 @@ const SolanaWallet: React.FC = () => {
                     money: 100,
                     level: 0,
                     healthPoints: 100,
-                    inventory: initialInventory
+                    inventory: initialInventory,
                 });
             } catch (error) {
                 console.error('Failed to create profile:', error);
@@ -219,6 +220,8 @@ const SolanaWallet: React.FC = () => {
                          }}>
                         <p className="text-inside-button">Connect Phantom Wallet</p>
                     </div>
+
+                    #TODO rasule fa login calumea
 
                     <div className="solflare-button"
                          onMouseDown={handleMouseDownSolflare}

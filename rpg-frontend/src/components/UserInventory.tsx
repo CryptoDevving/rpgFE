@@ -8,6 +8,8 @@ const UserInventory: React.FC = () => {
         return <p>No user data available. Please log in.</p>;
     }
 
+    console.log(user.inventory.map(item => item.imageUrl));
+
     return (
         <div>
             <h1>{user.nickname}'s Inventory</h1>
@@ -25,7 +27,7 @@ const UserInventory: React.FC = () => {
                         textAlign: 'center',
                     }}>
                         <h3>{item.itemId ? `Item ID: ${item.itemId}` : 'Empty Slot'}</h3>
-                        {/*{item.imageUrl && <img src={item.imageUrl} alt={`Item ${item.itemId}`} style={{ width: '100px', height: '100px' }} />}*/}
+                        <img src={item.imageUrl} alt={`Item ${item.itemId}`} style={{ width: '100px', height: '100px' }} />
 
                         {/*<p>Quantity: {item.quantity}</p>*/}
                         {/*<p>{item.equipped ? 'Equipped' : 'Not Equipped'}</p>*/}
