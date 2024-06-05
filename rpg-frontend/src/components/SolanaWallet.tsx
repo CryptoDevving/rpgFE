@@ -6,17 +6,22 @@ import { SolflareWalletAdapter } from '@solana/wallet-adapter-solflare';
 import RedButton from "./RedButton";
 import './SolanaWallet.css';
 import axios from "axios";
+import {useUser} from "../context/UserContext";
+import {useNavigate} from "react-router-dom";
 
 const SolanaWallet: React.FC = () => {
     const [walletProvider, setWalletProvider] = useState<string>("");
     const [publicKey, setPublicKey] = useState<PublicKey | null>(null);
     const [balance, setBalance] = useState<number | null>(null);
+
     const wallet = useWallet();
+    const navigate = useNavigate();
 
     const [isPhantomClicked, setIsPhantomClicked] = useState(false);
     const [isSolflareClicked, setIsSolflareClicked] = useState(false);
 
     const [nickname, setNickname] = useState(''); // State for managing nickname input
+    const { setUser } = useUser();
 
     useEffect(() => {
         const savedWalletProvider = localStorage.getItem('walletProvider');
@@ -50,7 +55,6 @@ const SolanaWallet: React.FC = () => {
             console.error('Failed to connect:', err);
         }
     };
-
     const disconnectWallet = async () => {
         await wallet.disconnect();
         setPublicKey(null);
@@ -87,14 +91,6 @@ const SolanaWallet: React.FC = () => {
         }, 500);
     };
 
-    const backgroundImageUrlPhantom = isPhantomClicked
-        ? '/figmaExports/buttons/LoginPhantomPressed.png'
-        : '/figmaExports/buttons/LoginPhantomButton.png';
-
-    const backgroundImageUrlSolflare = isSolflareClicked
-        ? '/figmaExports/buttons/LoginSolflarePressed.png'
-        : '/figmaExports/buttons/LoginSolflareButton.png';
-
     // INPUT COMPONENT ------------------------------------------------
 
     const [isFocused, setIsFocused] = useState(false);
@@ -114,26 +110,18 @@ const SolanaWallet: React.FC = () => {
         }
     };
 
-    const backgroundImageUrl = isFocused
-        ? '/figmaExports/SelectedInput.png'
-        : '/figmaExports/FieldClassic.png';  //Default
-
     // ---------- PROFILE CREATION -----------
 
     const createProfile = async () => {
         if (publicKey && nickname) {
+            const initialInventory = Array(24).fill(null).map((_, index) => ({
+                itemId: 0,  // No Item
+                quantity: 0,
+                equipped: false,
+                unlocked: index < 16
+            }));
 
-           //Generating default inventory
-            const initialInventory = Array(24).fill(null).map((_, index) => {
-                return {
-                    itemId: 0,  //No Item
-                    quantity: 0,
-                    equipped: false,
-                    unlocked: index < 16
-                };
-            });
-
-            initialInventory[0] = { itemId: 2, quantity: 1, equipped: true, unlocked: true };
+            initialInventory[0] = { itemId: 2, quantity: 1, equipped: true, unlocked: true }; // Example starting item
 
             try {
                 const response = await axios.post('http://localhost:8080/profiles', {
@@ -147,15 +135,41 @@ const SolanaWallet: React.FC = () => {
                 });
                 console.log(response.data);
                 alert('Profile created successfully!');
+
+                setUser(response.data);  // Set the user in context
+                navigate('/profile');
+
+                setUser({
+                    nickname: nickname,
+                    solanaAddress: publicKey.toString(),
+                    profileClass: 1,
+                    money: 100,
+                    level: 0,
+                    healthPoints: 100,
+                    inventory: initialInventory
+                });
             } catch (error) {
                 console.error('Failed to create profile:', error);
                 alert('Error creating profile.');
             }
         } else {
-            console.log(`Public Key: ${publicKey}, Nickname: ${nickname}`); // Log for debugging
+            console.log(`Public Key: ${publicKey}, Nickname: ${nickname}`);
             alert('Please connect a wallet and enter a nickname.');
         }
     };
+
+
+    const backgroundImageUrl = isFocused
+        ? '/figmaExports/SelectedInput.png'
+        : '/figmaExports/FieldClassic.png';  //Default
+
+    const backgroundImageUrlPhantom = isPhantomClicked
+        ? '/figmaExports/buttons/LoginPhantomPressed.png'
+        : '/figmaExports/buttons/LoginPhantomButton.png';
+
+    const backgroundImageUrlSolflare = isSolflareClicked
+        ? '/figmaExports/buttons/LoginSolflarePressed.png'
+        : '/figmaExports/buttons/LoginSolflareButton.png';
 
     return (
         <div>

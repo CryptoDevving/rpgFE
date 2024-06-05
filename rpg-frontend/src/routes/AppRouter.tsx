@@ -1,10 +1,9 @@
-// src/routes/AppRouter.tsx
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import InputComponent from "../InputComponent";
 import Game from "../Game";
 import ClassSelectPage from "../pages/ClassSelectPage";
 import LoginPage from "../pages/LoginPage";
+import UserProfilePage from "../pages/UserProfilePage";
 
 const AppRouter: React.FC = () => {
     // const { isAuthenticated } = useAuth();
@@ -13,7 +12,7 @@ const AppRouter: React.FC = () => {
         <Router>
             <Routes>
                 <Route path="/ceva" element={<Game />} />
-                {/*<Route path="/test" element={<InputComponent />} />*/}
+                <Route path="/profile" element={<UserProfilePage />} />
                 <Route path="/class" element={<ClassSelectPage />} />
                 <Route path="/login" element={<LoginPage />} />
 

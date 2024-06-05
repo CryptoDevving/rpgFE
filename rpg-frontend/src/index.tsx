@@ -10,6 +10,7 @@ import { PhantomWalletAdapter } from '@solana/wallet-adapter-phantom';
 import { SolflareWalletAdapter } from '@solana/wallet-adapter-solflare';
 import { clusterApiUrl } from '@solana/web3.js';
 import {WalletAdapterNetwork} from "@solana/wallet-adapter-base";
+import {UserProvider} from "./context/UserContext";
 
 const wallets = [
     new PhantomWalletAdapter(),
@@ -25,7 +26,9 @@ root.render(
     <React.StrictMode>
         <ConnectionProvider endpoint={network}>
             <WalletProvider wallets={wallets} autoConnect>
-                <App />
+                <UserProvider>
+                    <App />
+                </UserProvider>
             </WalletProvider>
         </ConnectionProvider>
     </React.StrictMode>
