@@ -122,9 +122,19 @@ const SolanaWallet: React.FC = () => {
 
     const createProfile = async () => {
         if (publicKey && nickname) {
-            const initialInventory = [
-                { itemId: 2, quantity: 1, equipped: true },
-            ];
+
+           //Generating default inventory
+            const initialInventory = Array(24).fill(null).map((_, index) => {
+                return {
+                    itemId: 0,  //No Item
+                    quantity: 0,
+                    equipped: false,
+                    unlocked: index < 16
+                };
+            });
+
+            initialInventory[0] = { itemId: 2, quantity: 1, equipped: true, unlocked: true };
+
             try {
                 const response = await axios.post('http://localhost:8080/profiles', {
                     profileNickname: nickname,
