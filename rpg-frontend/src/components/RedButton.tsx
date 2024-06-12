@@ -4,9 +4,9 @@ import './RedButton.css';
 interface RedButtonProps {
     text: string;
     onClick: () => void;
-    normalBg: string;
-    hoverBg: string;
-    clickBg: string;
+    normalBg?: string;
+    hoverBg?: string;
+    clickBg?: string;
 }
 
 const RedButton: React.FC<RedButtonProps> = ({ text, onClick, normalBg, hoverBg, clickBg }) => {
@@ -43,6 +43,12 @@ const RedButton: React.FC<RedButtonProps> = ({ text, onClick, normalBg, hoverBg,
             <div className="redbutton-text">{text}</div>
         </button>
     );
+};
+
+RedButton.defaultProps = {
+    normalBg: '/figmaExports/buttons/RedButtonNormal.png',
+    hoverBg: '/figmaExports/buttons/RedButtonHover.png',
+    clickBg: '/figmaExports/buttons/RedButtonPressed.png',
 };
 
 export default RedButton;

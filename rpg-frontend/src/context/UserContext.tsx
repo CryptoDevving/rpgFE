@@ -5,11 +5,10 @@ interface IInventoryItem {
     quantity: number;
     equipped: boolean;
     unlocked: boolean;
-    imageUrl: string; // Assuming images are referenced by URL
 }
 
 interface User {
-    nickname: string;
+    profileNickname: string;
     solanaAddress?: string;
     profileClass: number;
     money: number;
@@ -32,24 +31,18 @@ interface UserProviderProps {
 export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     const [user, setUser] = useState<User | null>(null);
 
-    // Load user data from local storage on component mount
     useEffect(() => {
-        const loadUserData = () => {
-            const savedUser = localStorage.getItem('user');
-            if (savedUser) {
-                setUser(JSON.parse(savedUser));
-            }
-        };
-
-        loadUserData();
+        const savedUser = localStorage.getItem('user');
+        if (savedUser) {
+            setUser(JSON.parse(savedUser));
+        }
     }, []);
 
-    // Update local storage whenever the user state changes
     useEffect(() => {
         if (user) {
             localStorage.setItem('user', JSON.stringify(user));
         } else {
-            localStorage.removeItem('user');  // Clear user from local storage if logged out
+            localStorage.removeItem('user');
         }
     }, [user]);
 

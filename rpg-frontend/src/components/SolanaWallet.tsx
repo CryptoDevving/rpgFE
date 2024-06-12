@@ -113,20 +113,19 @@ const SolanaWallet: React.FC = () => {
     // ---------- PROFILE CREATION -----------
 
     const createProfile = async () => {
-        if (publicKey && nickname) {
+        if (publicKey) {
             const initialInventory = Array(24).fill(null).map((_, index) => ({
                 itemId: 0,  // No Item
                 quantity: 0,
                 equipped: false,
-                unlocked: index < 16,
-                imageUrl: ''
+                unlocked: index < 16
             }));
 
-            initialInventory[0] = { itemId: 2, quantity: 1, equipped: true, unlocked: true, imageUrl: 'http://localhost:8080/images/itemJar.png' };
+            const randomNickname = Math.random().toString(36).substring(2, 10); // Generate a random nickname
 
             try {
                 const response = await axios.post('http://localhost:8080/profiles', {
-                    profileNickname: nickname,
+                    profileNickname: randomNickname,
                     solanaAddress: publicKey.toString(),
                     profileClass: 1,
                     money: 100,
@@ -139,23 +138,33 @@ const SolanaWallet: React.FC = () => {
 
                 setUser(response.data);  // Set the user in context
                 navigate('/profile');
-
-                setUser({
-                    nickname: nickname,
-                    solanaAddress: publicKey.toString(),
-                    profileClass: 1,
-                    money: 100,
-                    level: 0,
-                    healthPoints: 100,
-                    inventory: initialInventory,
-                });
             } catch (error) {
                 console.error('Failed to create profile:', error);
                 alert('Error creating profile.');
             }
         } else {
-            console.log(`Public Key: ${publicKey}, Nickname: ${nickname}`);
-            alert('Please connect a wallet and enter a nickname.');
+            alert('Please connect a wallet first.');
+        }
+    };
+
+
+    const login = async () => {
+        if (!publicKey) {
+            alert('Please connect your wallet first.');
+            return;
+        }
+
+        try {
+            const response = await axios.get(`http://localhost:8080/profiles/login/${publicKey.toString()}`);
+            if (response.data) {
+                setUser(response.data);
+                navigate('/profile');
+            } else {
+                alert('No account found with this wallet. Please create an account.');
+            }
+        } catch (error) {
+            console.error('Login failed:', error);
+            alert('Failed to log in. Please try again.');
         }
     };
 
@@ -201,12 +210,8 @@ const SolanaWallet: React.FC = () => {
                     <div style={{
                         marginLeft:25,
                     }}>
-                    <RedButton
-                        text="Disconnect Wallet" onClick={disconnectWallet}
-                        normalBg="/figmaExports/buttons/RedButtonNormal.png"
-                        hoverBg="/figmaExports/buttons/RedButtonHover.png"
-                        clickBg="/figmaExports/buttons/RedButtonPressed.png"
-                    />
+                        <RedButton text="Disconnet Wallet" onClick={disconnectWallet} />
+
                     </div>
                 </div>
             ) : (
@@ -221,7 +226,7 @@ const SolanaWallet: React.FC = () => {
                         <p className="text-inside-button">Connect Phantom Wallet</p>
                     </div>
 
-                    #TODO rasule fa login calumea
+                    {/*#TODO rasule fa login calumea*/}
 
                     <div className="solflare-button"
                          onMouseDown={handleMouseDownSolflare}
@@ -236,12 +241,15 @@ const SolanaWallet: React.FC = () => {
             )}
 
             <div className="create-account-button">
-            <RedButton text="Create Account" onClick={createProfile}
-                       normalBg="/figmaExports/buttons/RedButtonNormal.png"
-                       hoverBg="/figmaExports/buttons/RedButtonHover.png"
-                       clickBg="/figmaExports/buttons/RedButtonPressed.png"
-            />
+                <RedButton text="Create Account" onClick={createProfile} />
             </div>
+
+            {publicKey && (
+                <div className="login-button">
+                    <RedButton text="Log In" onClick={login} />
+                </div>
+            )}
+
 
         </div>
     );
