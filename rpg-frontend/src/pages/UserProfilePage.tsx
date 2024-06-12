@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useUser } from '../context/UserContext';
 import UserInventory from "../components/UserInventory";
+import ItemReward from "../components/ItemReward";
 
 const UserProfilePage: React.FC = () => {
     const { user, setUser } = useUser();
@@ -27,7 +28,7 @@ const UserProfilePage: React.FC = () => {
             <p>Money: {user.money}</p>
             <p>Level: {user.level}</p>
             <p>Health Points: {user.healthPoints}</p>
-
+<ItemReward/>
             <UserInventory/>
         </div>
     );

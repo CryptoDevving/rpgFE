@@ -8,6 +8,7 @@ interface IInventoryItem {
 }
 
 interface User {
+    _id: string;
     profileNickname: string;
     solanaAddress?: string;
     profileClass: number;

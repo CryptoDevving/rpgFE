@@ -53,18 +53,19 @@ const UserInventory: React.FC = () => {
 
     return (
         <div>
-            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', maxWidth: '600px' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', maxWidth: '400px' }}>
                 {items.map((item, index) => (
                     <div key={index} style={{
                         border: '1px solid #ccc',
                         padding: '10px',
                         margin: '5px',
-                        backgroundColor: item.unlocked ? '#fff' : '#eee',
+                        height: "80px",
+                        backgroundColor: item.unlocked ? '#fff' : '#545454',
                         color: item.unlocked ? '#000' : '#777',
                         textAlign: 'center',
                     }}>
-                        <h3>{item.itemId ? `Item: ${item.itemName}` : 'Empty Slot'}</h3>
-                        <img src={item.imageUrl} alt={`Item ${item.itemId}`} style={{ width: '100px', height: '100px' }} />
+                        {/*<h3>{item.itemId ? `Item: ${item.itemName}` : 'Empty Slot'}</h3>*/}
+                        <img src={item.imageUrl} alt={`Item ${item.itemId}`} style={{ width: '50px', height: '50px' }} />
                     </div>
                 ))}
             </div>
