@@ -4,10 +4,9 @@ import Game from "../Game";
 import ClassSelectPage from "../pages/ClassSelectPage";
 import LoginPage from "../pages/LoginPage";
 import UserProfilePage from "../pages/UserProfilePage";
+import DungeonPage from "../pages/DungeonPage";
 
 const AppRouter: React.FC = () => {
-    // const { isAuthenticated } = useAuth();
-
     return (
         <Router>
             <Routes>
@@ -15,6 +14,7 @@ const AppRouter: React.FC = () => {
                 <Route path="/profile" element={<UserProfilePage />} />
                 <Route path="/class" element={<ClassSelectPage />} />
                 <Route path="/login" element={<LoginPage />} />
+                <Route path="/dungeon" element={<DungeonPage />} />
 
                 {/*<Route path="/" element={<Login />} />*/}
                 {/*<Route path="/class-select" element={<ClassSelect />} />*/}
