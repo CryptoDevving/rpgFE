@@ -28,7 +28,7 @@ const UserProfilePage: React.FC = () => {
             <p>Money: {user.money}</p>
             <p>Level: {user.level}</p>
             <p>Health Points: {user.healthPoints}</p>
-<ItemReward/>
+            <ItemReward/>
             <UserInventory/>
         </div>
     );

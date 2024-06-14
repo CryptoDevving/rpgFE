@@ -15,6 +15,7 @@ interface User {
     money: number;
     level: number;
     healthPoints: number;
+    dungeonLevel: number
     inventory: IInventoryItem[];
 }
 
@@ -32,18 +33,24 @@ interface UserProviderProps {
 export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     const [user, setUser] = useState<User | null>(null);
 
+    // Load user data from local storage on component mount
     useEffect(() => {
-        const savedUser = localStorage.getItem('user');
-        if (savedUser) {
-            setUser(JSON.parse(savedUser));
-        }
+        const loadUserData = () => {
+            const savedUser = localStorage.getItem('user');
+            if (savedUser) {
+                setUser(JSON.parse(savedUser));
+            }
+        };
+
+        loadUserData();
     }, []);
 
+    // Update local storage whenever the user state changes
     useEffect(() => {
         if (user) {
             localStorage.setItem('user', JSON.stringify(user));
         } else {
-            localStorage.removeItem('user');
+            localStorage.removeItem('user');  // Clear user from local storage if logged out
         }
     }, [user]);
 
