@@ -4440,6 +4440,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-modal@^3.16.3":
+  version "3.16.3"
+  resolved "https://registry.npmjs.org/@types/react-modal/-/react-modal-3.16.3.tgz"
+  integrity sha512-xXuGavyEGaFQDgBv4UVm8/ZsG+qxeQ7f77yNrW3n+1J6XAstUy5rYHeIHPh1KzsGc6IkCIdu6lQ2xWzu1jBTLg==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react@*", "@types/react@^18.2.58", "@types/react@^18.2.6":
   version "18.2.58"
   resolved "https://registry.npmjs.org/@types/react/-/react-18.2.58.tgz"
@@ -13756,7 +13763,7 @@ react-lifecycles-compat@^3.0.0:
   resolved "https://registry.npmjs.org/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
-react-modal@^3.12.1:
+react-modal@^3.12.1, react-modal@^3.16.1:
   version "3.16.1"
   resolved "https://registry.npmjs.org/react-modal/-/react-modal-3.16.1.tgz"
   integrity sha512-VStHgI3BVcGo7OXczvnJN7yT2TWHJPDXZWyI/a0ssFNhGZWsPmB8cF0z33ewDXq4VfYMO1vXgiv/g8Nj9NDyWg==

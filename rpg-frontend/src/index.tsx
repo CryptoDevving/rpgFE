@@ -11,6 +11,8 @@ import { SolflareWalletAdapter } from '@solana/wallet-adapter-solflare';
 import { clusterApiUrl } from '@solana/web3.js';
 import {WalletAdapterNetwork} from "@solana/wallet-adapter-base";
 import {UserProvider} from "./context/UserContext";
+import Modal from 'react-modal';
+
 
 const wallets = [
     new PhantomWalletAdapter(),
