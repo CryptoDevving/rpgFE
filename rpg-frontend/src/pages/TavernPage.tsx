@@ -31,8 +31,11 @@ const TavernPage: React.FC = () => {
     }, [user]);
 
     const handleItemClick = (item: IInventorySlot & ItemDetails & { slotIndex: number }) => {
-        setSelectedItem(item);
+        if (item.itemId !== 0) {
+            setSelectedItem(item);
+        }
     };
+
 
     const handleCloseModal = () => {
         setSelectedItem(null);
