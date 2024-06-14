@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import UserInventory from '../components/UserInventory';
-import ItemDetailsModal from '../components/ItemDetailsModal';
+import UserInventory from "../components/UserInventory";
+import Merchant from "../components/MerchantComponent";
+import ItemDetailsModal from "../components/ItemDetailsModal";
 import { useUser } from '../context/UserContext';
 import { IInventorySlot, ItemDetails } from '../context/types'; // Adjust the import path
 
-const UserProfilePage: React.FC = () => {
+const TavernPage: React.FC = () => {
     const { user, setUser } = useUser();
     const [items, setItems] = useState<(IInventorySlot & ItemDetails & { slotIndex: number })[]>([]);
     const [selectedItem, setSelectedItem] = useState<(IInventorySlot & ItemDetails & { slotIndex: number }) | null>(null);
@@ -37,6 +38,10 @@ const UserProfilePage: React.FC = () => {
         setSelectedItem(null);
     };
 
+    const handleItemSold = () => {
+        setSelectedItem(null);
+    };
+
     const handleSell = async (item: IInventorySlot & ItemDetails & { slotIndex: number }) => {
         if (!user) return;
         try {
@@ -58,12 +63,9 @@ const UserProfilePage: React.FC = () => {
     }
 
     return (
-        <div>
-            <h1>{user.profileNickname}'s Profile</h1>
-            <p>Money: {user.money}</p>
-            <p>Level: {user.level}</p>
-            <p>Health Points: {user.healthPoints}</p>
+        <div style={{ display: 'flex' }}>
             <UserInventory onItemClick={handleItemClick} items={items} />
+            <Merchant selectedItem={selectedItem} onItemSold={handleItemSold} />
             {selectedItem && (
                 <ItemDetailsModal
                     item={selectedItem}
@@ -75,4 +77,4 @@ const UserProfilePage: React.FC = () => {
     );
 };
 
-export default UserProfilePage;
+export default TavernPage;

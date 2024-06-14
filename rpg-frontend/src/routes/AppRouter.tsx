@@ -5,6 +5,7 @@ import ClassSelectPage from "../pages/ClassSelectPage";
 import LoginPage from "../pages/LoginPage";
 import UserProfilePage from "../pages/UserProfilePage";
 import DungeonPage from "../pages/DungeonPage";
+import TavernPage from "../pages/TavernPage";
 
 const AppRouter: React.FC = () => {
     return (
@@ -15,6 +16,7 @@ const AppRouter: React.FC = () => {
                 <Route path="/class" element={<ClassSelectPage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/dungeon" element={<DungeonPage />} />
+                <Route path="/tavern" element={<TavernPage />} />
 
                 {/*<Route path="/" element={<Login />} />*/}
                 {/*<Route path="/class-select" element={<ClassSelect />} />*/}
