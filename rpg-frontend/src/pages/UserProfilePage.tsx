@@ -58,19 +58,20 @@ const UserProfilePage: React.FC = () => {
     }
 
     return (
-        <div>
+        <div style={{color: "white"}}>
+            <UserInventory onItemClick={handleItemClick} items={items} />
+
             <h1>{user.profileNickname}'s Profile</h1>
             <p>Money: {user.money}</p>
             <p>Level: {user.level}</p>
             <p>Health Points: {user.healthPoints}</p>
-            <UserInventory onItemClick={handleItemClick} items={items} />
-            {selectedItem && (
-                <ItemDetailsModal
-                    item={selectedItem}
-                    onClose={handleCloseModal}
-                    onSell={() => handleSell(selectedItem)}
-                />
-            )}
+            {/*{selectedItem && (*/}
+            {/*    <ItemDetailsModal*/}
+            {/*        item={selectedItem}*/}
+            {/*        onClose={handleCloseModal}*/}
+            {/*        onSell={() => handleSell(selectedItem)}*/}
+            {/*    />*/}
+            {/*)}*/}
         </div>
     );
 };
