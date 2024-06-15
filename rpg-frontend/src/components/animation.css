@@ -1,0 +1,18 @@
+@keyframes opacityPulse {
+    0% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    100% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+}
+
+.selected-slot-animation {
+    animation: opacityPulse 1s infinite;
+}

@@ -30,7 +30,9 @@ const UserProfilePage: React.FC = () => {
     }, [user]);
 
     const handleItemClick = (item: IInventorySlot & ItemDetails & { slotIndex: number }) => {
-        setSelectedItem(item);
+        if (item.itemId !== 0) {
+            setSelectedItem(item);
+        }
     };
 
     const handleCloseModal = () => {
@@ -58,20 +60,19 @@ const UserProfilePage: React.FC = () => {
     }
 
     return (
-        <div style={{color: "white"}}>
-            <UserInventory onItemClick={handleItemClick} items={items} />
-
+        <div style={{ color: "white" }}>
+            <UserInventory onItemClick={handleItemClick} items={items} selectedItem={selectedItem} /> {/* Pass selectedItem */}
             <h1>{user.profileNickname}'s Profile</h1>
             <p>Money: {user.money}</p>
             <p>Level: {user.level}</p>
             <p>Health Points: {user.healthPoints}</p>
-            {/*{selectedItem && (*/}
-            {/*    <ItemDetailsModal*/}
-            {/*        item={selectedItem}*/}
-            {/*        onClose={handleCloseModal}*/}
-            {/*        onSell={() => handleSell(selectedItem)}*/}
-            {/*    />*/}
-            {/*)}*/}
+            {selectedItem && (
+                <ItemDetailsModal
+                    item={selectedItem}
+                    onClose={handleCloseModal}
+                    onSell={() => handleSell(selectedItem)}
+                />
+            )}
         </div>
     );
 };

@@ -6,7 +6,6 @@ import ItemDetailsModal from "../components/ItemDetailsModal";
 import { useUser } from '../context/UserContext';
 import { IInventorySlot, ItemDetails } from '../context/types'; // Adjust the import path
 
-
 const TavernPage: React.FC = () => {
     const { user, setUser } = useUser();
     const [items, setItems] = useState<(IInventorySlot & ItemDetails & { slotIndex: number })[]>([]);
@@ -68,7 +67,7 @@ const TavernPage: React.FC = () => {
     return (
         <div style={{ display: 'flex' }}>
             <div style={{marginLeft: "5%"}}>
-                <UserInventory onItemClick={handleItemClick} items={items} />
+                <UserInventory onItemClick={handleItemClick} items={items} selectedItem={selectedItem} /> {/* Pass selectedItem */}
             </div>
             <Merchant selectedItem={selectedItem} onItemSold={handleItemSold} />
             {selectedItem && (
