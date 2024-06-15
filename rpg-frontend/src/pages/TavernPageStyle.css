@@ -1,0 +1,60 @@
+.tavern-container {
+    display: flex;
+    justify-content: center; /* Center the content horizontally */
+    align-items: flex-start; /* Align items at the top */
+    margin: 20px; /* Add some margin for spacing */
+}
+
+.frame-box {
+    flex: 1; /* Take equal space */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.frame-box img {
+    width: 100%;
+    height: auto;
+}
+
+.text-above {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}
+
+.slots-container {
+    position: absolute;
+    top: 80px; /* Adjust this value as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.slot {
+    position: relative;
+    margin: 10px;
+    height: 80px;
+    width: 80px;
+    cursor: pointer;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.merchant-container {
+    flex: 1; /* Take equal space */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
