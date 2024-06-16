@@ -1,7 +1,7 @@
 import React from 'react';
 import { IInventorySlot, ItemDetails } from '../context/types'; // Adjust the import path
-import './animation.css'
-
+// import './animation.css'
+import "./InventoryStyle.css"
 interface UserInventoryProps {
     onItemClick: (item: IInventorySlot & ItemDetails & { slotIndex: number }) => void;
     items: (IInventorySlot & ItemDetails & { slotIndex: number })[];
@@ -21,7 +21,7 @@ const UserInventory: React.FC<UserInventoryProps> = ({ onItemClick, items, selec
 
             <div style={{
                 position: 'absolute',
-                top: "80px", // Adjust this value as needed
+                top: "80px",
                 left: '50%',
                 transform: 'translateX(-50%)',
                 width: '90%',

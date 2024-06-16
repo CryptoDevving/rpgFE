@@ -16,3 +16,65 @@
 .selected-slot-animation {
     animation: opacityPulse 1s infinite;
 }
+
+/*------------------------*/
+
+@keyframes modalIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes modalOut {
+    from {
+        transform: scale(1);
+        opacity: 1;
+    }
+    to {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+}
+
+.modal-content {
+    animation: modalIn 0.3s forwards;
+}
+
+.modal-content-leave {
+    animation: modalOut 0.3s forwards;
+}
+
+.modal-overlay {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.modal-overlay-hidden {
+    background-color: rgba(0, 0, 0, 0) !important;
+}
+
+.modal-fade-in {
+    animation: modalIn 0.3s forwards;
+}
+
+.modal-fade-out {
+    animation: modalOut 0.3s forwards;
+}
+
+.text-above {
+    margin-top: 23px;
+}
+
+/*------------------------*/
+
+.text-above-dungeon {
+    margin-top: -670px;
+}
+
+.text-above-inventory {
+    margin-top: 23px;
+}

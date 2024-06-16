@@ -16,6 +16,7 @@
 
 .text-above {
     position: absolute;
+    top: 1px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 1;
