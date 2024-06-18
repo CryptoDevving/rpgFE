@@ -178,15 +178,16 @@ const DungeonComponent: React.FC = () => {
                         border: 'none'
                     },
                     overlay: {
-                        backgroundColor: 'rgba(0, 0, 0, 0.1)'
+                        backgroundColor: 'rgba(0, 0, 0, 0.7)'
                     }
                 }}
             >
                 {selectedEnemy && (
                     <div className={isModalClosing ? 'modal-content-leave' : 'modal-content'} style={{ position: 'relative', textAlign: 'center', color: 'white' }}>
                         <img src={frameImages[enemies.indexOf(selectedEnemy) % frameImages.length]} alt="Frame" style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, zIndex: -1 }} />
+
                         <div style={{ padding: '20px', position: 'relative', zIndex: 1 }}>
-                            <h2>{selectedEnemy.enemyName}</h2>
+                            <h2 style={{color: "black"}}>{selectedEnemy.enemyName}</h2>
                             <p>Level: {selectedEnemy.enemyLevel}</p>
                             <p>Cost: {selectedEnemy.enemyCost}</p>
                             <p>Fight Duration: {selectedEnemy.enemyFightDuration}s</p>
@@ -196,8 +197,8 @@ const DungeonComponent: React.FC = () => {
                                     <li key={index}>{`${stat.type}: ${stat.value}`}</li>
                                 ))}
                             </ul>
-                            <p>Base Money Reward: {selectedEnemy.baseMoneyReward}</p>
-                            <p>Base Experience Reward: {selectedEnemy.baseExpReward}</p>
+                            <p>Reward: {selectedEnemy.baseMoneyReward}</p>
+                            <p>Experience: {selectedEnemy.baseExpReward}</p>
                             <button
                                 onClick={() => handleFight(selectedEnemy._id)}
                                 disabled={isFighting || user.money < selectedEnemy.enemyCost}

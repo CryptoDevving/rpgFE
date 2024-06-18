@@ -6,12 +6,15 @@ import LoginPage from "../pages/LoginPage";
 import UserProfilePage from "../pages/UserProfilePage";
 import DungeonPage from "../pages/DungeonPage";
 import TavernPage from "../pages/TavernPage";
+import MapPage from "../pages/MapPage";
 
 const AppRouter: React.FC = () => {
     return (
         <Router>
             <Routes>
                 <Route path="/ceva" element={<Game />} />
+                <Route path="/" element={<MapPage />} />
+
                 <Route path="/profile" element={<UserProfilePage />} />
                 <Route path="/class" element={<ClassSelectPage />} />
                 <Route path="/login" element={<LoginPage />} />
