@@ -1,10 +1,11 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
-interface IInventoryItem {
+export interface IInventoryItem {  // Ensure this is exported
     itemId: number;
     quantity: number;
     equipped: boolean;
     unlocked: boolean;
+    type: 'armor' | 'helmet' | 'weapon' | 'ring' | 'pants';
 }
 
 interface User {
@@ -15,7 +16,7 @@ interface User {
     money: number;
     level: number;
     healthPoints: number;
-    dungeonLevel: number
+    dungeonLevel: number;
     inventory: IInventoryItem[];
 }
 
@@ -33,7 +34,6 @@ interface UserProviderProps {
 export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     const [user, setUser] = useState<User | null>(null);
 
-    // Load user data from local storage on component mount
     useEffect(() => {
         const loadUserData = () => {
             const savedUser = localStorage.getItem('user');
@@ -45,12 +45,11 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
         loadUserData();
     }, []);
 
-    // Update local storage whenever the user state changes
     useEffect(() => {
         if (user) {
             localStorage.setItem('user', JSON.stringify(user));
         } else {
-            localStorage.removeItem('user');  // Clear user from local storage if logged out
+            localStorage.removeItem('user');
         }
     }, [user]);
 

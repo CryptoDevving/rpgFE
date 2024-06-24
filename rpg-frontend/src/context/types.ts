@@ -3,6 +3,8 @@ export interface IInventorySlot {
     quantity: number;
     equipped: boolean;
     unlocked: boolean;
+    type: 'armor' | 'helmet' | 'weapon' | 'ring' | 'pants'; // Ensure this property is included
+
 }
 
 export interface ItemDetails {
@@ -20,4 +22,6 @@ export interface ItemDetails {
     };
     stackable: boolean;
     imageUrl: string;
+    type: 'armor' | 'helmet' | 'weapon' | 'ring' | 'pants'; // Ensure this property is included
+
 }
