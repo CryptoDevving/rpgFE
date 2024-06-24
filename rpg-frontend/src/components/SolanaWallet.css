@@ -70,7 +70,7 @@
 
 .create-account-button {
     margin-left: 25px;
-    margin-top: 250px;
+    margin-top: 200px;
 }
 
 /*-------------- INPUT COMPONENT --------------------*/
@@ -136,4 +136,9 @@
 
 .input-background input:focus + .focus-frame {
     display: block;
+}
+
+.login-button {
+    margin-top: 10px;
+    margin-left: 25px;
 }

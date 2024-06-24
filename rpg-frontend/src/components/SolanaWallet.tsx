@@ -240,6 +240,7 @@ const SolanaWallet: React.FC = () => {
                 </div>
             )}
 
+            <div>
             <div className="create-account-button">
                 <RedButton text="Create Account" onClick={createProfile} />
             </div>
@@ -249,7 +250,7 @@ const SolanaWallet: React.FC = () => {
                     <RedButton text="Log In" onClick={login} />
                 </div>
             )}
-
+            </div>
 
         </div>
     );
