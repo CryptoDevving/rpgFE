@@ -37,7 +37,7 @@ const App: React.FC = () => {
             {windowSize.width < 1084 || windowSize.height < 768 ? (
                 <div style={{ textAlign: 'center', padding: 50 }}>
                     <p style={{ color: 'red', fontSize: 20 }}>
-                        Your screen size is too small, please resize for a better experience.
+                        Your screen is too small, please resize for a better experience.
                     </p>
                     <img
                         width="200px"

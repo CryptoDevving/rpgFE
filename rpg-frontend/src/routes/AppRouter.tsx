@@ -20,9 +20,10 @@ const AppRouter: React.FC = () => {
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/dungeon" element={<DungeonPage />} />
                 <Route path="/tavern" element={<TavernPage />} />
+                <Route path="/map" element={<MapPage />} />
 
                 {/*<Route path="/" element={<Login />} />*/}
-                {/*<Route path="/class-select" element={<ClassSelect />} />*/}
+                <Route path="/class-select" element={<ClassSelectPage />} />
                 {/*<Route path="/map" element={isAuthenticated ? <Map /> : <Navigate to="/" />} />*/}
                 {/*<Route path="/hero" element={isAuthenticated ? <HeroPage /> : <Navigate to="/" />} />*/}
                 {/*<Route path="/tavern" element={isAuthenticated ? <Tavern /> : <Navigate to="/" />} />*/}

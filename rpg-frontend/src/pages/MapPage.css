@@ -29,34 +29,41 @@
     width: 200px; /* Adjust the size as needed */
     height: 200px; /* Adjust the size as needed */
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .house {
     position: relative;
     width: 100%;
     height: 100%;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease;
 }
 
-.house::before {
-    content: '';
+.house.hovered {
+    transform: scale(1.1) translateY(-15px); /* Grow the image and move it up on hover */
+}
+
+.house-label {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 150%; /* Adjust the size of the glow */
-    height: 150%; /* Adjust the size of the glow */
-    background-color: rgba(255, 255, 0, 0.6); /* Glow color */
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    filter: blur(20px);
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    top: -30px; /* Adjust the position as needed */
+    color: white;
+    font-size: 16px; /* Adjust the size as needed */
+    text-align: center;
+}
+
+.house-container img {
+    width: 100%;
+    height: 100%;
+    transition: width 0.3s ease, height 0.3s ease;
+}
+
+.house-container:hover .house {
+    width: 230px; /* Adjust the size as needed */
+    height: 230px; /* Adjust the size as needed */
 }
 
 .house-container:hover .house::before {
     opacity: 1;
-}
-
-.house-container:hover .house {
-    transform: scale(1.05);
 }

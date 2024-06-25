@@ -6,8 +6,8 @@ import { SolflareWalletAdapter } from '@solana/wallet-adapter-solflare';
 import RedButton from "./RedButton";
 import './SolanaWallet.css';
 import axios from "axios";
-import {useUser} from "../context/UserContext";
-import {useNavigate} from "react-router-dom";
+import { useUser } from "../context/UserContext";
+import { useNavigate } from "react-router-dom";
 
 const SolanaWallet: React.FC = () => {
     const [walletProvider, setWalletProvider] = useState<string>("");
@@ -137,7 +137,7 @@ const SolanaWallet: React.FC = () => {
                 alert('Profile created successfully!');
 
                 setUser(response.data);  // Set the user in context
-                navigate('/profile');
+                navigate('/class-select');  // Navigate to class select page
             } catch (error) {
                 console.error('Failed to create profile:', error);
                 alert('Error creating profile.');
@@ -226,8 +226,6 @@ const SolanaWallet: React.FC = () => {
                         <p className="text-inside-button">Connect Phantom Wallet</p>
                     </div>
 
-                    {/*#TODO rasule fa login calumea*/}
-
                     <div className="solflare-button"
                          onMouseDown={handleMouseDownSolflare}
                          onMouseUp={handleMouseUpSolflare}
@@ -241,15 +239,15 @@ const SolanaWallet: React.FC = () => {
             )}
 
             <div>
-            <div className="create-account-button">
-                <RedButton text="Create Account" onClick={createProfile} />
-            </div>
-
-            {publicKey && (
-                <div className="login-button">
-                    <RedButton text="Log In" onClick={login} />
+                <div className="create-account-button">
+                    <RedButton text="Create Account" onClick={createProfile} />
                 </div>
-            )}
+
+                {publicKey && (
+                    <div className="login-button">
+                        <RedButton text="Log In" onClick={login} />
+                    </div>
+                )}
             </div>
 
         </div>

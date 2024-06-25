@@ -21,7 +21,7 @@ const initialSlots: EquipSlot[] = [
     { type: itemTypes.HELMET, item: null },
     { type: itemTypes.ARMOR, item: null },
     { type: itemTypes.WEAPON, item: null },
-    { type: itemTypes.SHIELD, item: null },
+    // { type: itemTypes.SHIELD, item: null },
     { type: itemTypes.RING, item: null },
     { type: itemTypes.RING, item: null },
     { type: itemTypes.PANTS, item: null },
@@ -41,7 +41,7 @@ const HeroEquip: React.FC<HeroEquipProps> = ({ selectedItem, onEquip, solanaAddr
     const { user, setUser } = useUser();
 
     useEffect(() => {
-        const slots = initialSlots.map((slot, index) => {
+        const slots = initialSlots.map((slot) => {
             const equippedItem = equippedItems.find(ei => ei.slotType === slot.type);
             return {
                 ...slot,
@@ -90,11 +90,11 @@ const HeroEquip: React.FC<HeroEquipProps> = ({ selectedItem, onEquip, solanaAddr
         <div className="frame-box" style={{ position: 'relative', width: '450px', height: 'auto', marginLeft: "30%", marginTop: "60px" }}>
             <img src={frameImage} alt="Hero Equipment Frame" draggable="false" style={{ width: '450px', height: 'auto' }} />
 
-            <h2 className="text-above" style={{ position: 'absolute', top: '5px', left: '50%', transform: 'translateX(-50%)', zIndex: 1 }}>Hero Equipment</h2>
+            <h2 className="text-above" style={{ position: 'absolute', top: '-5px', left: '50%', transform: 'translateX(-50%)', zIndex: 1 }}>Hero Equipment</h2>
 
             <div style={{
                 position: 'absolute',
-                top: "100px",
+                top: 72,
                 left: '50%',
                 transform: 'translateX(-50%)',
                 width: '90%',
@@ -102,44 +102,83 @@ const HeroEquip: React.FC<HeroEquipProps> = ({ selectedItem, onEquip, solanaAddr
                 display: 'flex',
                 flexWrap: 'wrap',
                 justifyContent: 'space-around',
+                gap: '200px', // Add gap between columns
                 zIndex: 1
             }}>
-                {equippedSlots.map((slot, index) => (
-                    <div
-                        key={index}
-                        style={{
-                            border: '0.5px solid #ccc',
-                            padding: '11px',
-                            margin: '5px',
-                            height: "60px",
-                            width: "60px",
-                            backgroundColor: slot.item ? '#fff' : '#545454',
-                            backgroundImage: `url(${slotImage})`,
-                            backgroundSize: 'cover',
-                            backgroundPosition: 'center',
-                            color: slot.item ? '#000' : '#777',
-                            textAlign: 'center',
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            cursor: 'pointer',
-                            opacity: slot.item ? 1 : 0.5
-                        }}
-                        onClick={() => handleEquipItem(index)}
-                    >
-                        {slot.item ? (
-                            <>
-                                <img src={slot.item.imageUrl} alt={`Item ${slot.item.itemId}`} style={{ width: '50px', height: '50px' }} />
-                                {/*<p>{slot.item.itemName}</p>*/}
-                            </>
-                        ) : (
-                            <button onClick={() => handleEquipItem(index)} disabled={!selectedItem || (slot.type !== selectedItem.type)}>
-                                Equip
-                            </button>
-                        )}
-                    </div>
-                ))}
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    {equippedSlots.slice(0, Math.ceil(equippedSlots.length / 2)).map((slot, index) => (
+                        <div
+                            key={index}
+                            style={{
+                                border: '0.5px solid #ccc',
+                                padding: '11px',
+                                margin: '5px',
+                                height: "60px",
+                                width: "60px",
+                                backgroundColor: slot.item ? '#fff' : '#545454',
+                                backgroundImage: `url(${slotImage})`,
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center',
+                                color: slot.item ? '#000' : '#777',
+                                textAlign: 'center',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                cursor: 'pointer',
+                                opacity: slot.item ? 1 : 0.5
+                            }}
+                            onClick={() => handleEquipItem(index)}
+                        >
+                            {slot.item ? (
+                                <>
+                                    <img src={slot.item.imageUrl} alt={`Item ${slot.item.itemId}`} style={{ width: '50px', height: '50px' }} />
+                                </>
+                            ) : (
+                                <button onClick={() => handleEquipItem(index)} disabled={!selectedItem || (slot.type !== selectedItem.type)}>
+                                    Equip
+                                </button>
+                            )}
+                        </div>
+                    ))}
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    {equippedSlots.slice(Math.ceil(equippedSlots.length / 2)).map((slot, index) => (
+                        <div
+                            key={index}
+                            style={{
+                                border: '0.5px solid #ccc',
+                                padding: '11px',
+                                margin: '5px',
+                                height: "60px",
+                                width: "60px",
+                                backgroundColor: slot.item ? '#fff' : '#545454',
+                                backgroundImage: `url(${slotImage})`,
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center',
+                                color: slot.item ? '#000' : '#777',
+                                textAlign: 'center',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                cursor: 'pointer',
+                                opacity: slot.item ? 1 : 0.5
+                            }}
+                            onClick={() => handleEquipItem(index + Math.ceil(equippedSlots.length / 2))}
+                        >
+                            {slot.item ? (
+                                <>
+                                    <img src={slot.item.imageUrl} alt={`Item ${slot.item.itemId}`} style={{ width: '50px', height: '50px' }} />
+                                </>
+                            ) : (
+                                <button onClick={() => handleEquipItem(index + Math.ceil(equippedSlots.length / 2))} disabled={!selectedItem || (slot.type !== selectedItem.type)} >
+                                    Equip
+                                </button>
+                            )}
+                        </div>
+                    ))}
+                </div>
             </div>
 
             {user && (
@@ -154,19 +193,29 @@ const HeroEquip: React.FC<HeroEquipProps> = ({ selectedItem, onEquip, solanaAddr
                     flexDirection: 'column',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    // backgroundColor: '#333',
                     color: 'white',
                     padding: '10px',
                     borderRadius: '10px',
-                    zIndex: 1
+                    zIndex: 1,
                 }}>
-                    <h3>{user.profileNickname}'s Profile</h3>
-                    <p>Money: {user.money} </p>
-                    <p>Level: {user.level}</p>
-                    <p>Dungeon Level: {user.dungeonLevel}</p>
-                    <p>Health Points: {user.healthPoints}</p>
+                    <h3 style={{ marginBottom: '10px' }}>{user.profileNickname}'s Profile</h3>
+                    <div style={{
+                        display: 'flex',
+                        justifyContent: 'space-around',
+                        width: '100%'
+                    }}>
+                        <div style={{ flex: 1, textAlign: 'center' }}>
+                            <p>Money: {user.money}</p>
+                            <p>Level: {user.level}</p>
+                        </div>
+                        <div style={{ flex: 1, textAlign: 'center' }}>
+                            <p>Dungeon Level: {user.dungeonLevel}</p>
+                            <p>Health Points: {user.healthPoints}</p>
+                        </div>
+                    </div>
                 </div>
             )}
+
         </div>
     );
 };

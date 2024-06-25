@@ -4,12 +4,19 @@ import UserInventory from '../components/UserInventory';
 import Merchant from '../components/MerchantComponent';
 import ItemDetailsModal from '../components/ItemDetailsModal';
 import { useUser } from '../context/UserContext';
-import { IInventorySlot, ItemDetails } from '../context/types'; // Adjust the import path
+import { IInventorySlot, ItemDetails } from '../context/types';
+import {useNavigate} from "react-router-dom";
+import RedButton from "../components/RedButton"; // Adjust the import path
 
 const TavernPage: React.FC = () => {
     const { user, setUser } = useUser();
     const [items, setItems] = useState<(IInventorySlot & ItemDetails & { slotIndex: number })[]>([]);
     const [selectedItem, setSelectedItem] = useState<(IInventorySlot & ItemDetails & { slotIndex: number }) | null>(null);
+    const navigate = useNavigate();
+
+    const navigateToMap = () => {
+        navigate('/map');
+    };
 
     useEffect(() => {
         if (user && user.inventory) {
@@ -86,6 +93,11 @@ const TavernPage: React.FC = () => {
             <div style={{ flex: 1 }}>
                 <UserInventory onItemClick={handleItemClick} items={items} selectedItem={selectedItem} />
             </div>
+
+            <div style={{ marginTop: '780px', marginLeft: -440, textAlign: 'center' }}>
+                <RedButton text="Go to Map" onClick={navigateToMap} />
+            </div>
+
             <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 {selectedItem && (
                     <ItemDetailsModal

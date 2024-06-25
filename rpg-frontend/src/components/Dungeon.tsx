@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useUser } from '../context/UserContext';
 import Modal from 'react-modal';
 import './animation.css';
+import RedButton from "./RedButton";
+import {useNavigate} from "react-router-dom";
 
 interface Stat {
     type: string;
@@ -39,7 +41,11 @@ const DungeonComponent: React.FC = () => {
     const [isModalClosing, setIsModalClosing] = useState(false);
 
     const frameImage = '/figmaExports/FrameDungeon.png'; // Ensure this path is correct
-
+    const navigate = useNavigate();
+ 
+    const navigateToMap = () => {
+        navigate('/map');
+    };
     useEffect(() => {
         const fetchEnemies = async () => {
             if (user) {
@@ -164,6 +170,10 @@ const DungeonComponent: React.FC = () => {
                         </div>
                     ))
                 )}
+            </div>
+
+            <div style={{ marginTop: '650px', textAlign: 'center' }}>
+                <RedButton text="Go to Map" onClick={navigateToMap} />
             </div>
 
             <Modal

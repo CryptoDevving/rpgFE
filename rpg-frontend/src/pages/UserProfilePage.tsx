@@ -1,16 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import UserInventory from '../components/UserInventory';
-import ItemDetailsModal from '../components/ItemDetailsModal';
+import ItemDetailsShow from '../components/ItemDetailsModal';
 import { useUser, User } from '../context/UserContext';
 import { IInventorySlot, ItemDetails } from '../context/types';
 import HeroEquip from '../components/HeroEquip';
+import {useNavigate} from "react-router-dom";
+import RedButton from "../components/RedButton";
 
 const UserProfilePage: React.FC = () => {
     const { user, setUser } = useUser();
     const [items, setItems] = useState<(IInventorySlot & ItemDetails & { slotIndex: number })[]>([]);
     const [selectedItem, setSelectedItem] = useState<(IInventorySlot & ItemDetails & { slotIndex: number }) | null>(null);
     const [equippedItems, setEquippedItems] = useState<any[]>([]);
+    const navigate = useNavigate();
+
+    const navigateToMap = () => {
+        navigate('/map');
+    };
 
     useEffect(() => {
         if (user && user.inventory) {
@@ -103,17 +110,22 @@ const UserProfilePage: React.FC = () => {
             <div className="user-inventory">
                 <UserInventory onItemClick={handleItemClick} items={items} selectedItem={selectedItem} />
             </div>
+            <div style={{ textAlign: 'center', marginTop: 780, marginLeft: -380 }}>
+                <RedButton text="Go to Map" onClick={navigateToMap} />
+            </div>
+
             <div className="item-details-modal">
                 {selectedItem && (
-                    <ItemDetailsModal
+                    <ItemDetailsShow
                         item={selectedItem}
                         onClose={handleCloseModal}
                         onSell={() => handleSell(selectedItem)}
                         onEquip={() => handleEquip(selectedItem)}
-                        buttonShow="equip" // Show equip button
+                        buttonShow="equip"
                     />
                 )}
             </div>
+
             <div className="hero-equip">
                 {user.solanaAddress && (
                     <HeroEquip
@@ -122,8 +134,9 @@ const UserProfilePage: React.FC = () => {
                         solanaAddress={user.solanaAddress}
                         equippedItems={equippedItems}
                     />
-                )} 
+                )}
             </div>
+
         </div>
     );
 };
