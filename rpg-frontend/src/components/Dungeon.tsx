@@ -230,7 +230,6 @@ const DungeonComponent: React.FC = () => {
                         </div>
                     </div>
                 )}
-                {/*TODO closing button add red X*/}
                 {/*<button onClick={closeModal} style={{ position: 'absolute', top: 10, right: 10 }}>Close</button>*/}
             </Modal>
         </div>

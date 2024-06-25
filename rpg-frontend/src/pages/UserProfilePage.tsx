@@ -5,9 +5,9 @@ import ItemDetailsShow from '../components/ItemDetailsShow';
 import { useUser, User } from '../context/UserContext';
 import { IInventorySlot, ItemDetails } from '../context/types';
 import HeroEquip from '../components/HeroEquip';
-import {useNavigate} from "react-router-dom";
-import RedButton from "../components/RedButton";
-import Layout from "../Layout";
+import { useNavigate } from 'react-router-dom';
+import RedButton from '../components/RedButton';
+import Layout from '../Layout';
 
 const UserProfilePage: React.FC = () => {
     const { user, setUser } = useUser();
@@ -18,6 +18,12 @@ const UserProfilePage: React.FC = () => {
 
     const navigateToMap = () => {
         navigate('/map');
+    };
+
+    const handleLogout = () => {
+        setUser(null);
+        localStorage.removeItem('user');
+        navigate('/login');
     };
 
     useEffect(() => {
@@ -108,39 +114,42 @@ const UserProfilePage: React.FC = () => {
 
     return (
         <Layout showLogo={true}>
+            <div className="user-profile-page">
+                <div className="user-inventory">
+                    <UserInventory onItemClick={handleItemClick} items={items} selectedItem={selectedItem} />
+                </div>
+                <div style={{ textAlign: 'center', marginTop: 780, marginLeft: -380 }}>
+                    <RedButton text="Go to Map" onClick={navigateToMap} />
+                </div>
 
-        <div className="user-profile-page">
-            <div className="user-inventory">
-                <UserInventory onItemClick={handleItemClick} items={items} selectedItem={selectedItem} />
-            </div>
-            <div style={{ textAlign: 'center', marginTop: 780, marginLeft: -380 }}>
-                <RedButton text="Go to Map" onClick={navigateToMap} />
-            </div>
+                <div className="item-details-modal">
+                    {selectedItem && (
+                        <ItemDetailsShow
+                            item={selectedItem}
+                            onClose={handleCloseModal}
+                            onSell={() => handleSell(selectedItem)}
+                            onEquip={() => handleEquip(selectedItem)}
+                            buttonShow="equip"
+                        />
+                    )}
+                </div>
 
-            <div className="item-details-modal">
-                {selectedItem && (
-                    <ItemDetailsShow
-                        item={selectedItem}
-                        onClose={handleCloseModal}
-                        onSell={() => handleSell(selectedItem)}
-                        onEquip={() => handleEquip(selectedItem)}
-                        buttonShow="equip"
-                    />
-                )}
-            </div>
+                <div className="hero-equip">
 
-            <div className="hero-equip">
-                {user.solanaAddress && (
-                    <HeroEquip
-                        selectedItem={selectedItem}
-                        onEquip={handleEquip}
-                        solanaAddress={user.solanaAddress}
-                        equippedItems={equippedItems}
-                    />
-                )}
-            </div>
+                    <div style={{ textAlign: 'center', marginTop: 30, marginLeft: 120 }}>
+                        <RedButton text="Logout" onClick={handleLogout} />
+                    </div>
 
-        </div>
+                    {user.solanaAddress && (
+                        <HeroEquip
+                            selectedItem={selectedItem}
+                            onEquip={handleEquip}
+                            solanaAddress={user.solanaAddress}
+                            equippedItems={equippedItems}
+                        />
+                    )}
+                </div>
+            </div>
         </Layout>
     );
 };
