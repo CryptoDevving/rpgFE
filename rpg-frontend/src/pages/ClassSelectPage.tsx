@@ -23,6 +23,7 @@ const ClassSelectPage: React.FC = () => {
 
     return (
         <Layout showLogo={true}>
+            <div style={{marginTop: 250}}>
             <div>
                 <p className="text1">CHOOSE YOUR CLASS:</p>
             </div>
@@ -37,6 +38,7 @@ const ClassSelectPage: React.FC = () => {
                     <WhiteButton onClick={() => handleClick("CLASS INFO")} text="CLASS INFO" />
                     <WhiteButton onClick={() => handleClick("CONFIRM")} text="CONFIRM" />
                 </div>
+            </div>
             </div>
         </Layout>
     );

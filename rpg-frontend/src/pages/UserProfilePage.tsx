@@ -7,6 +7,7 @@ import { IInventorySlot, ItemDetails } from '../context/types';
 import HeroEquip from '../components/HeroEquip';
 import {useNavigate} from "react-router-dom";
 import RedButton from "../components/RedButton";
+import Layout from "../Layout";
 
 const UserProfilePage: React.FC = () => {
     const { user, setUser } = useUser();
@@ -106,6 +107,8 @@ const UserProfilePage: React.FC = () => {
     }
 
     return (
+        <Layout showLogo={true}>
+
         <div className="user-profile-page">
             <div className="user-inventory">
                 <UserInventory onItemClick={handleItemClick} items={items} selectedItem={selectedItem} />
@@ -138,6 +141,7 @@ const UserProfilePage: React.FC = () => {
             </div>
 
         </div>
+        </Layout>
     );
 };
 

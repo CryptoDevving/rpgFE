@@ -6,7 +6,8 @@ import ItemDetailsModal from '../components/ItemDetailsModal';
 import { useUser } from '../context/UserContext';
 import { IInventorySlot, ItemDetails } from '../context/types';
 import {useNavigate} from "react-router-dom";
-import RedButton from "../components/RedButton"; // Adjust the import path
+import RedButton from "../components/RedButton";
+import Layout from "../Layout";
 
 const TavernPage: React.FC = () => {
     const { user, setUser } = useUser();
@@ -89,6 +90,8 @@ const TavernPage: React.FC = () => {
     }
 
     return (
+        <Layout showLogo={true}>
+
         <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', padding: '20px' }}>
             <div style={{ flex: 1 }}>
                 <UserInventory onItemClick={handleItemClick} items={items} selectedItem={selectedItem} />
@@ -98,7 +101,7 @@ const TavernPage: React.FC = () => {
                 <RedButton text="Go to Map" onClick={navigateToMap} />
             </div>
 
-            <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', marginLeft: 200 }}>
+            <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', marginLeft: 250 }}>
                 {selectedItem && (
                     <ItemDetailsModal
                         item={selectedItem}
@@ -114,6 +117,7 @@ const TavernPage: React.FC = () => {
                 <Merchant selectedItem={selectedItem} onItemSold={handleItemSold} />
             </div>
         </div>
+        </Layout>
     );
 };
 

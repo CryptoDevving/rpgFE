@@ -2,8 +2,12 @@ import React from 'react';
 import './Layout.css';
 import logo from "./imports/LogoShadowCompressed.png";
 
-// @ts-ignore
-const Layout = ({ children, showLogo }) => {
+interface LayoutProps {
+    children: React.ReactNode;
+    showLogo: boolean;
+}
+
+const Layout: React.FC<LayoutProps> = ({ children, showLogo }) => {
     return (
         <div className="layout">
             {showLogo && (

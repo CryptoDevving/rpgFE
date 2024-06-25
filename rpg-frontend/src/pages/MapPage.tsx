@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './MapPage.css';
-
+import Layout from "../Layout";
+ 
 const MapPage: React.FC = () => {
     const navigate = useNavigate();
     const [hoveredHouse, setHoveredHouse] = useState<string | null>(null);
@@ -19,6 +20,8 @@ const MapPage: React.FC = () => {
     };
 
     return (
+        <Layout showLogo={true}>
+
         <div className="map-container">
             <div className="background-wrapper">
                 <img src="../figmaExports/mapBackground.png" alt="Map Background" className="map-background" />
@@ -66,6 +69,7 @@ const MapPage: React.FC = () => {
                 />
             </div>
         </div>
+        </Layout>
     );
 };
 
