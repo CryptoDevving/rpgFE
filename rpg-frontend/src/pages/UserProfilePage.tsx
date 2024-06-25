@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import UserInventory from '../components/UserInventory';
-import ItemDetailsShow from '../components/ItemDetailsModal';
+import ItemDetailsShow from '../components/ItemDetailsShow';
 import { useUser, User } from '../context/UserContext';
 import { IInventorySlot, ItemDetails } from '../context/types';
 import HeroEquip from '../components/HeroEquip';

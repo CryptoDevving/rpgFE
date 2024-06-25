@@ -1,0 +1,37 @@
+.item-details-container {
+    color: white;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.item-image-container {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+}
+
+.item-slot-image {
+    margin-right: -20px;
+    /*position: absolute;*/
+    width: 95px;
+    height: 95px;
+    z-index: 1;
+}
+
+.item-image {
+    position: absolute;
+    width: 120px; /* Adjust size as needed */
+    height: 120px; /* Adjust size as needed */
+    z-index: 2;
+    top: -15px; /* Adjust positioning as needed */
+    left: 10px; /* Adjust positioning as needed */
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}

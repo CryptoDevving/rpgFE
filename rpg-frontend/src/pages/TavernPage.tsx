@@ -94,11 +94,11 @@ const TavernPage: React.FC = () => {
                 <UserInventory onItemClick={handleItemClick} items={items} selectedItem={selectedItem} />
             </div>
 
-            <div style={{ marginTop: '780px', marginLeft: -440, textAlign: 'center' }}>
+            <div style={{ marginTop: '780px', marginLeft: -325, textAlign: 'center' }}>
                 <RedButton text="Go to Map" onClick={navigateToMap} />
             </div>
 
-            <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', marginLeft: 200 }}>
                 {selectedItem && (
                     <ItemDetailsModal
                         item={selectedItem}
