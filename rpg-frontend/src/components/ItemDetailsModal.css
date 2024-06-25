@@ -23,11 +23,11 @@
 
 .item-image {
     position: absolute;
-    width: 120px; /* Adjust size as needed */
-    height: 120px; /* Adjust size as needed */
+    width: 90px; /* Adjust size as needed */
+    height: 90px; /* Adjust size as needed */
     z-index: 2;
-    top: -10px; /* Adjust positioning as needed */
-    left: 10px; /* Adjust positioning as needed */
+    top: 4px; /* Adjust positioning as needed */
+    left: 15px; /* Adjust positioning as needed */
 }
 
 .button-group {

@@ -5,6 +5,7 @@ import Modal from 'react-modal';
 import './animation.css';
 import RedButton from "./RedButton";
 import {useNavigate} from "react-router-dom";
+import WhiteButton from "./WhiteButton";
 
 interface Stat {
     type: string;
@@ -194,44 +195,35 @@ const DungeonComponent: React.FC = () => {
             >
                 {selectedEnemy && (
                     <div className={isModalClosing ? 'modal-content-leave' : 'modal-content'} style={{ position: 'relative', textAlign: 'center', color: 'white' }}>
-                        <img src={frameImages[enemies.indexOf(selectedEnemy) % frameImages.length]} alt="Frame" style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, zIndex: -1 }} />
-
-                        <div style={{ padding: '20px', position: 'relative', zIndex: 1 }}>
-                            <h2 style={{color: "black"}}>{selectedEnemy.enemyName}</h2>
-                            <p>Level: {selectedEnemy.enemyLevel}</p>
-                            <p>Cost: {selectedEnemy.enemyCost}</p>
-                            <p>Fight Duration: {selectedEnemy.enemyFightDuration}s</p>
-                            <p>Stats:</p>
-                            <ul>
-                                {selectedEnemy.enemyStats.map((stat, index) => (
-                                    <li key={index}>{`${stat.type}: ${stat.value}`}</li>
-                                ))}
-                            </ul>
-                            <p>Reward: {selectedEnemy.baseMoneyReward}</p>
-                            <p>Experience: {selectedEnemy.baseExpReward}</p>
-                            <button
-                                onClick={() => handleFight(selectedEnemy._id)}
-                                disabled={isFighting || user.money < selectedEnemy.enemyCost}
-                            >
-                                {user.money < selectedEnemy.enemyCost ? 'Not Enough Money' : 'Start Fight'}
-                            </button>
-                            {/*{isFighting && (*/}
-                            {/*    <div>*/}
-                            {/*        <p>Fighting...</p>*/}
-                            {/*        <div style={{ width: '100%', backgroundColor: '#ccc' }}>*/}
-                            {/*            <div style={{*/}
-                            {/*                width: `${fightProgress}%`,*/}
-                            {/*                height: '30px',*/}
-                            {/*                backgroundColor: '#4caf50'*/}
-                            {/*            }} />*/}
-                            {/*        </div>*/}
-                            {/*    </div>*/}
-                            {/*)}*/}
+                        <div style={{ position: 'relative', zIndex: 1, padding: '20px' }}>
+                            <h2 style={{ color: "black", marginTop: '20px', position: 'relative', zIndex: 2 }}>{selectedEnemy.enemyName}</h2>
+                            <div style={{ position: 'relative', zIndex: 2, marginLeft: 90 }}>
+                                <p>Level: {selectedEnemy.enemyLevel}</p>
+                                <p>Cost: {selectedEnemy.enemyCost}</p>
+                                <p>Fight Duration: {selectedEnemy.enemyFightDuration}s</p>
+                                <p>Stats:</p>
+                                <ul>
+                                    {selectedEnemy.enemyStats.map((stat, index) => (
+                                        <li key={index}>{`${stat.type}: ${stat.value}`}</li>
+                                    ))}
+                                </ul>
+                                <p>Reward: {selectedEnemy.baseMoneyReward}</p>
+                                <p>Experience: {selectedEnemy.baseExpReward}</p>
+                            </div>
+                            <div style={{ textAlign: 'center', position: 'relative', zIndex: 2 }}>
+                                <WhiteButton
+                                    onClick={() => handleFight(selectedEnemy._id)}
+                                    text={user.money < selectedEnemy.enemyCost ? 'Not Enough Money' : 'Start Fight'}
+                                    disabled={isFighting || user.money < selectedEnemy.enemyCost}
+                                />
+                            </div>
                         </div>
+                        <img src={selectedEnemy.imageUrl} alt={selectedEnemy.enemyName} style={{ width: '400px', height: '400px', position: 'absolute', top: '55%', left: '-40px', transform: 'translateY(-50%)', zIndex: 3 }} />
+                        <img src={frameImages[enemies.indexOf(selectedEnemy) % frameImages.length]} alt="Frame" style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, zIndex: -1 }} />
                     </div>
                 )}
-                {/*<button onClick={closeModal} style={{ position: 'absolute', top: 10, right: 10 }}>Close</button>*/}
             </Modal>
+
         </div>
     );
 };
