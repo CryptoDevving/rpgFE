@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
-export interface IInventoryItem {  // Ensure this is exported
+export interface IInventoryItem {
     itemId: number;
     quantity: number;
     equipped: boolean;
@@ -8,7 +8,7 @@ export interface IInventoryItem {  // Ensure this is exported
     type: 'armor' | 'helmet' | 'weapon' | 'ring' | 'pants';
 }
 
-interface User {
+export interface User {
     _id: string;
     profileNickname: string;
     solanaAddress?: string;

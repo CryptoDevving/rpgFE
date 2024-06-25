@@ -84,7 +84,7 @@ const Merchant: React.FC<MerchantProps> = ({ selectedItem, onItemSold }) => {
                                 {/*<p>{slot.item.itemName}</p>*/}
                             </>
                         ) : (
-                            <button onClick={() => handleSellItem(index)} disabled={!selectedItem || (user?.money ?? 0) < selectedItem.price}>
+                            <button onClick={() => handleSellItem(index)} disabled={!selectedItem || (user?.money ?? 0) < selectedItem.price} style={{ opacity: 0, border: 'none', background: 'none', width: '100%', height: '100%' }}>
                                 Sell
                             </button>
                         )}

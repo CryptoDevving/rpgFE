@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import UserInventory from '../components/UserInventory';
 import ItemDetailsModal from '../components/ItemDetailsModal';
-import { useUser } from '../context/UserContext';
-import { IInventorySlot, ItemDetails } from '../context/types'; // Adjust the import path
-import HeroEquip from '../components/HeroEquip'; // Import the HeroEquip component
+import { useUser, User } from '../context/UserContext';
+import { IInventorySlot, ItemDetails } from '../context/types';
+import HeroEquip from '../components/HeroEquip';
 
 const UserProfilePage: React.FC = () => {
     const { user, setUser } = useUser();
     const [items, setItems] = useState<(IInventorySlot & ItemDetails & { slotIndex: number })[]>([]);
     const [selectedItem, setSelectedItem] = useState<(IInventorySlot & ItemDetails & { slotIndex: number }) | null>(null);
+    const [equippedItems, setEquippedItems] = useState<any[]>([]);
 
     useEffect(() => {
         if (user && user.inventory) {
@@ -18,8 +19,8 @@ const UserProfilePage: React.FC = () => {
                     axios.get<ItemDetails>(`http://localhost:8080/items/${slot.itemId}`).then(response => ({
                         ...slot,
                         ...response.data,
-                        type: response.data.itemType.toLowerCase() as 'armor' | 'helmet' | 'weapon' | 'ring' | 'pants', // Convert itemType to the correct union type
-                        slotIndex: index  // Add slot index here
+                        type: response.data.itemType.toLowerCase() as 'armor' | 'helmet' | 'weapon' | 'ring' | 'pants',
+                        slotIndex: index
                     }))
                 );
 
@@ -29,6 +30,21 @@ const UserProfilePage: React.FC = () => {
 
             fetchItems();
         }
+    }, [user]);
+
+    useEffect(() => {
+        const fetchEquippedItems = async () => {
+            if (user) {
+                try {
+                    const response = await axios.get(`http://localhost:8080/heroequipment/equipped-items/${user.solanaAddress}`);
+                    setEquippedItems(response.data);
+                } catch (error) {
+                    console.error('Failed to fetch equipped items:', error);
+                }
+            }
+        };
+
+        fetchEquippedItems();
     }, [user]);
 
     const handleItemClick = (item: IInventorySlot & ItemDetails & { slotIndex: number }) => {
@@ -57,10 +73,25 @@ const UserProfilePage: React.FC = () => {
         }
     };
 
-    const handleEquip = (item: IInventorySlot & ItemDetails & { slotIndex: number }, slotIndex: number) => {
-        // Logic to handle equipping an item
-        console.log(`Equipped ${item.itemName} to slot ${slotIndex}`);
-        setSelectedItem(null); // Deselect item after equipping
+    const handleEquip = async (item: IInventorySlot & ItemDetails & { slotIndex: number }) => {
+        if (!user) return;
+        try {
+            const response = await axios.post('http://localhost:8080/heroequipment/equip', {
+                solanaAddress: user.solanaAddress,
+                itemId: item.itemId,
+                type: item.type,
+            });
+
+            const updatedUser = response.data.user as User;
+            setUser({
+                ...updatedUser,
+                inventory: updatedUser.inventory,
+            });
+            setEquippedItems(response.data.equippedItems); // Update the equipped items state
+            setSelectedItem(null); // Deselect item after equipping
+        } catch (error) {
+            console.error('Failed to equip item:', error);
+        }
     };
 
     if (!user) {
@@ -68,25 +99,30 @@ const UserProfilePage: React.FC = () => {
     }
 
     return (
-        <div style={{ color: "white" }}>
-            <h1>{user.profileNickname}'s Profile</h1>
-            <p>Money: {user.money}</p>
-            <p>Level: {user.level}</p>
-            <p>Health Points: {user.healthPoints}</p>
-            <div style={{ display: 'flex', gap: '20px' }}>
-                <div>
-                    <UserInventory onItemClick={handleItemClick} items={items} selectedItem={selectedItem} />
-                    {selectedItem && (
-                        <ItemDetailsModal
-                            item={selectedItem}
-                            onClose={handleCloseModal}
-                            onSell={() => handleSell(selectedItem)}
-                        />
-                    )}
-                </div>
-                {user.solanaAddress && (
-                    <HeroEquip selectedItem={selectedItem} onEquip={handleEquip} solanaAddress={user.solanaAddress} />
+        <div className="user-profile-page">
+            <div className="user-inventory">
+                <UserInventory onItemClick={handleItemClick} items={items} selectedItem={selectedItem} />
+            </div>
+            <div className="item-details-modal">
+                {selectedItem && (
+                    <ItemDetailsModal
+                        item={selectedItem}
+                        onClose={handleCloseModal}
+                        onSell={() => handleSell(selectedItem)}
+                        onEquip={() => handleEquip(selectedItem)}
+                        buttonShow="equip" // Show equip button
+                    />
                 )}
+            </div>
+            <div className="hero-equip">
+                {user.solanaAddress && (
+                    <HeroEquip
+                        selectedItem={selectedItem}
+                        onEquip={handleEquip}
+                        solanaAddress={user.solanaAddress}
+                        equippedItems={equippedItems}
+                    />
+                )} 
             </div>
         </div>
     );

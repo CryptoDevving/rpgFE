@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import UserInventory from "../components/UserInventory";
-import Merchant from "../components/MerchantComponent";
-import ItemDetailsModal from "../components/ItemDetailsModal";
+import UserInventory from '../components/UserInventory';
+import Merchant from '../components/MerchantComponent';
+import ItemDetailsModal from '../components/ItemDetailsModal';
 import { useUser } from '../context/UserContext';
 import { IInventorySlot, ItemDetails } from '../context/types'; // Adjust the import path
 
@@ -60,23 +60,47 @@ const TavernPage: React.FC = () => {
         }
     };
 
+    const handleEquip = async (item: IInventorySlot & ItemDetails & { slotIndex: number }) => {
+        if (!user) return;
+        try {
+            const response = await axios.post('http://localhost:8080/heroequipment/equip', {
+                solanaAddress: user.solanaAddress,
+                itemId: item.itemId,
+                type: item.type,
+            });
+
+            const updatedUser = response.data.user;
+            setUser(updatedUser);
+            setSelectedItem(null);
+        } catch (error) {
+            console.error('Failed to equip item:', error);
+        }
+    };
+
     if (!user) {
         return <div>Please log in to view this page.</div>;
     }
 
     return (
-        <div style={{ display: 'flex' }}>
-            <div style={{marginLeft: "5%"}}>
-                <UserInventory onItemClick={handleItemClick} items={items} selectedItem={selectedItem} /> {/* Pass selectedItem */}
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', padding: '20px' }}>
+            <div style={{ flex: 1 }}>
+                <UserInventory onItemClick={handleItemClick} items={items} selectedItem={selectedItem} />
             </div>
-            <Merchant selectedItem={selectedItem} onItemSold={handleItemSold} />
-            {selectedItem && (
-                <ItemDetailsModal
-                    item={selectedItem}
-                    onClose={handleCloseModal}
-                    onSell={() => handleSell(selectedItem)}
-                />
-            )}
+            <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                {selectedItem && (
+                    <ItemDetailsModal
+                        item={selectedItem}
+                        onClose={handleCloseModal}
+                        onSell={() => handleSell(selectedItem)}
+                        onEquip={() => handleEquip(selectedItem)}
+                        buttonShow="sell"  // Show equip button
+
+                    />
+                )}
+            </div>
+            <div style={{ marginRight:300}}>
+                <Merchant selectedItem={selectedItem} onItemSold={handleItemSold} />
+            </div>
         </div>
     );
 };

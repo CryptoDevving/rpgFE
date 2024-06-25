@@ -1,15 +1,18 @@
 import React from 'react';
-import { IInventorySlot, ItemDetails} from "../context/types";
+import { IInventorySlot, ItemDetails } from "../context/types";
 
 interface ItemDetailsModalProps {
-    item: IInventorySlot & ItemDetails;
+    item: IInventorySlot & ItemDetails & { slotIndex: number };
     onClose: () => void;
-    onSell: () => void;
+    onSell?: () => void;  // Made optional
+    onEquip?: () => void;  // Made optional
+    buttonShow: 'sell' | 'equip';  // New prop to determine which button to show
 }
 
-const ItemDetailsModal: React.FC<ItemDetailsModalProps> = ({ item, onClose, onSell }) => {
+const ItemDetailsModal: React.FC<ItemDetailsModalProps> = ({ item, onClose, onSell, onEquip, buttonShow }) => {
     return (
-        <div>
+        <div style={{color:"white"}}>
+            <img src={item.imageUrl} alt={item.itemName} style={{ width: '100px', height: '100px' }} /> {/* Image added */}
             <h2>{item.itemName}</h2>
             <p>Type: {item.itemType}</p>
             <p>Rarity: {item.rarity}</p>
@@ -22,7 +25,12 @@ const ItemDetailsModal: React.FC<ItemDetailsModalProps> = ({ item, onClose, onSe
                 <li>Crit: {item.bonusStats.crt}</li>
                 <li>Mana: {item.bonusStats.mna}</li>
             </ul>
-            <button onClick={onSell}>Sell</button>
+            {buttonShow === 'sell' && onSell && (
+                <button onClick={onSell}>Sell</button>
+            )}
+            {buttonShow === 'equip' && onEquip && (
+                <button onClick={onEquip}>Equip</button>
+            )}
             <button onClick={onClose}>Close</button>
         </div>
     );
