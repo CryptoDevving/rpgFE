@@ -42,33 +42,33 @@
 
 ## 🖼️ Project Screenshots:
 ### Login Page:
-![1Login](https://github.com/mar1nel/rpgFE/assets/110196455/ea70a1de-1588-4b31-a064-d2db4f8daeb7)
+![blur_edges](https://github.com/mar1nel/rpgFE/assets/110196455/5a0ec7db-07a3-4fc0-86a3-2af056f1421a)
 
 ### SignUp Page:
-![1Signup](https://github.com/mar1nel/rpgFE/assets/110196455/1b43ea15-4c7e-450b-87c0-38a04ff5266a)
+![blur_edges (1)](https://github.com/mar1nel/rpgFE/assets/110196455/9521bd29-2c64-424b-9347-d57982d01883)
 
 ### Class Selection Page:
-![2Class Select](https://github.com/mar1nel/rpgFE/assets/110196455/3cf00bd6-62c8-492d-92b6-a1228b8dccd5)
+![blur_edges (2)](https://github.com/mar1nel/rpgFE/assets/110196455/9589e14e-478a-4a92-ba30-72ea8905493a)
 
 ### Main Profile Page:
-![3Main Page](https://github.com/mar1nel/rpgFE/assets/110196455/63092b06-d588-4c9a-9585-111d58f85346)
+![blur_edges (3)](https://github.com/mar1nel/rpgFE/assets/110196455/00c5f1ee-8b5a-4ef4-9bd0-19a565f730be)
 
 ### Map Page:
-![4Map Index](https://github.com/mar1nel/rpgFE/assets/110196455/d062d2e0-3a64-4148-8f0b-bf993a13bdd0)
+![blur_edges (5)](https://github.com/mar1nel/rpgFE/assets/110196455/20071fad-72b3-42a0-b718-99a3972f54df)
 
 ### Tavern Page:
-![5Tavern](https://github.com/mar1nel/rpgFE/assets/110196455/ddc56fbf-02d2-4596-bd51-51cce1c6a4ce)
+![blur_edges (6)](https://github.com/mar1nel/rpgFE/assets/110196455/f8da95d8-3ac1-4dcc-97df-63722be0a92a)
 
 ### Dungeon Page:
-![6Dungeon](https://github.com/mar1nel/rpgFE/assets/110196455/afda376f-7c89-4c1b-9371-61a1e88e6ecc)
+![blur_edges (8)](https://github.com/mar1nel/rpgFE/assets/110196455/3908a158-a1b4-40f3-9267-2965fd775bfc)
 
 ### Enemy Modal:
-![6 1Enemy](https://github.com/mar1nel/rpgFE/assets/110196455/06ac2459-c9b1-4437-a1e0-8b7f63a9cf91)
+![blur_edges (7)](https://github.com/mar1nel/rpgFE/assets/110196455/9dea3ddd-2a0a-45b4-abb7-bd1404dfaa95)
 
 ### BlockPost Modal:
-![4 1BlockPost](https://github.com/mar1nel/rpgFE/assets/110196455/11677381-44ba-4655-93e2-3c7083b7f7d8)
+![blur_edges (4)](https://github.com/mar1nel/rpgFE/assets/110196455/3cec8376-5ded-4632-8e7f-873369eb7a04)
 
-
+<p align="center">Anyone can fork this project. Tag me <a href="[github.com/mar1nel](https://github.com/mar1nel)">@mar1nel</a> and have fun!</p>
 
 <p align="center">
   <img src="https://github.com/mar1nel/rpgFE/assets/110196455/7874f9c4-cbec-4bdf-b72f-d319e748fea4" width="1100" />
